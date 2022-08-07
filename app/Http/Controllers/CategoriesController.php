@@ -22,4 +22,12 @@ class CategoriesController extends Controller
 
         return view('categories.clothing', ["products" => $products]);
     }
+
+    public function kitchenware(Products $products){
+
+        $products = DB::select('select * from products where categories_id = :id', ['id' => 3]);
+
+        return view('categories.kitchenware', ["products" => $products]);
+    }
+
 }

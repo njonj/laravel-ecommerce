@@ -55,7 +55,7 @@ table {
     border-collapse: separate;
 }
         .main {
-          margin-left: 110px; /* Same as the width of the sidenav */
+          margin-left: 85px; /* Same as the width of the sidenav */
           padding: 0px 10px;
 
         }
@@ -101,15 +101,18 @@ table {
 }
 .gutter-1{
     margin: -5px;
+
 }
+
 .row{
     display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(3, 800px);
+    justify-content: center;
 }
 .gutter-1 > *{
-    margin-bottom: 0 !important;
-    padding: 5px;
-}
+   gap: 15px;
+   margin-bottom: 50px;
+
 .card{
     position: relative;
     display: flex;
@@ -172,6 +175,7 @@ figure {
     -webkit-box-flex: 1;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
+
 
 }
 .image::after {
@@ -279,21 +283,37 @@ a {
 *, *::before, *::after {
     box-sizing: border-box;
 }
+.star-rating {
+    display: block;
+    cursor: pointer;
+    float: none;
+    position: relative;
+    font-size: 11px;
+    height: 1em;
+    line-height: 1em;
+    overflow: hidden;
+    position: relative;
+    width: 6em;
+    letter-spacing: .1em;
+    text-align: left;
+    white-space: nowrap;
+}
+.rating-wrap{
+margin: 0 0 0.625rem;
+height: 1px;
+position: relative;
+display: table ;}
+
         </style>
 </head>
 <body>
-    <div class="sidebar">
-        <img src="{{ asset ('/storage/images/about-img.jpg') }}" alt="" style="width: 100%">
-        <a href="/products" class="fa fa-home">Home</a>
-        <a href="/categories" class="">Products</a>
-        <a href="" class="href">About</a>
-        <a href="/footer" class="href">Contact</a>
-    </div>
+
     <div id="app">
+
 <div class="main">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="main navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

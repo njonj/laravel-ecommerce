@@ -12,7 +12,7 @@
                 </a>
                     <div class="card-body">
                 <h5 class="card-title">{{ $product->products_name }}</h5>
-                <span class="justify-end"> <strong style="color: orange; font-size: 14px;">{{ $product->products_price }}</strong> </span>
+                <span class="justify-end"><strong style="color: orange; font-size: 14px;">{{ $product->products_price }}</strong></span>
                 {{-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> --}}
                 <div class="progress" style="width: 25%">
                     <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{ $product->products_quantity }}</div>

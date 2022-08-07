@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use money_format;
 class Products extends Model
 {
     use HasFactory;
@@ -12,7 +12,11 @@ class Products extends Model
     protected $table = 'products';
 
     protected $primaryKey = 'products_id';
-    protected $fillable = ["vendors_id","categories_id","products_name", "products_price", "products_quantity", "products_description", "products_image", "products_category"];
+    protected $fillable = ["categories_id","products_name", "products_price", "products_quantity", "products_description", "products_image", "products_category"];
+
+//   public function presentPrice(){
+//       return money_format('$%i', $this->price / 100) ;
+//   }
 
 
     public function categories(){
@@ -28,6 +32,8 @@ class Products extends Model
     }
 
     //
-    
+    public function orders(){
+        return $this->belongsToMany(Orders::class);
+    }
 
 }

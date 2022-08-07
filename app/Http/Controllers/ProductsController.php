@@ -13,6 +13,7 @@ class ProductsController extends Controller
 {
 
 
+
     // public function __construct()
     // {
 
@@ -61,7 +62,6 @@ class ProductsController extends Controller
             $request->image->move(public_path('sales'), $imageName);
 
 
-
             $name = $request->input('products_name');
             $price =  $request->input('products_price');
             $quantity = $request->input('products_quantity');
@@ -106,14 +106,15 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products_id)
+    public function show($products_id)
     {
-        $products = Products::all();
+
+        $products = DB::select('select * from products where products_id=' .$products_id);
+
 
         return view('products.show', [
             'products' => $products
         ]);
-        $products = DB::select('select * from products where products_id=' . $products_id);
     }
 
     /**
@@ -122,16 +123,15 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products_id)
+    public function edit($products_id)
     {
-        $products = Products::findOrFail($products_id);
+        // $products = Products::findOrFail($products_id);
 
-        // return view('products.edit', [
-        //     'products' => $products
-        // ]);
+        return view('products.edit',[
+            'products' => Products::where('products_id',$products_id)
+        ]);
+
         // $products = Products::where( $products_id)->first();
-
-        return view('products.edit')->with('products', $products);
     }
 
     /**
@@ -141,8 +141,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $products_id, Products $products)
+    public function update(Request $request, Products $products_id)
     {
+
+
+
         if ($request->hasFile('image')) {
 
             // $imageName = auth()->user_id;
@@ -180,15 +183,15 @@ class ProductsController extends Controller
             $categories = DB::select('select categories_id from categories');
 
 
+            Products::whereId($products_id)->update($products);
 
-            $products->save(); // Finally, save the record.
+
+
+            return redirect('/products')->with('success', 'Product Updated Successfully');
         } else {
 
             return "no file";
         }
-
-        Products::whereId($products_id)->update($products);
-        return redirect('/products')->with('success', 'Product Updated Successfully');
     }
 
 

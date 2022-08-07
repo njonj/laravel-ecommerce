@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\LandingController;
 use App\Models\Categories;
 
 /*
@@ -23,13 +24,14 @@ use App\Models\Categories;
 
 Route::get('/categories/cars', [CategoriesController::class, 'cars']);
 Route::get('/categories/clothing', [CategoriesController::class, 'clothing']);
+Route::get('/categories/kitchenware', [CategoriesController::class, 'kitchenware']);
+
 
 // registering resource route
 Route::resource('products', ProductsController::class);
 
-Route::get('/show', [ProductsController::class, 'show']);
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/edit', [ProductsController::class, 'edit']);
+
+
 Auth::routes();
 
 

@@ -1,31 +1,61 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="py-1">
+<section class="main py-1">
+    <div class="container">
+
+        <div class="row" style="margin-bottom: 3em">
+            @foreach ($products as $product)
+            <div class="col-md-4 product-image">
+
+                <div>
+
+
+
+                    <img src="{{  asset('/sales/'.$product->products_image) }}" width="100%" height="100%" id="current-image">
+                </div>
+
+            </div>
+            <div class="product-details col-md-5 offset-md-1">
+                <h2 class="lead" style="margin-top:1em">{{ $product->products_name }}</h2>
+                <h3 class="lead"> {{ $product->products_price }} </h3>
+                <p class="light-text">{{ $product->products_description }}</p>
+                {{-- @if ($product->products_quantity > 0)
+                    <form action="{{ route('cart.store') }}" method="POST">
+                        @csrf()
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                        <input type="hidden" name="name" value="{{ $product->name }}">
+                        <input type="hidden" name="price" value="{{ $product->price }}">
+                        <button type="submit" class="btn custom-border-n">Add to Cart</button>
+                    </form>
+                @endif --}}
+            </div>
+            @endforeach
+        </div>
+        <!-- <hr> -->
+    </div>
 <div class="container overflow-hidden">
     <div class="row gx-5">
-        {{-- @if (is_array($products) || is_object($products)) --}}
+        @if (is_array($products) || is_object($products))
  @foreach ($products as $product)
         <div class="col">
             <div class="p-5 border bg-light">
-                <img class="img-thumbnail" src="{{  asset('/sales/'.$product->products_image) }}" alt="">
+                <img src="{{  asset('/sales/'.$product->products_image) }}" width="100%" height="100%" id="current-image">
             </div>
            </div>
            <div class="col">
              <div class="p-3 border bg-light">
-<h6  style="color: orange"><bold>{{  $product->products_price }}</bold></h6>
-<button class="primary">Add to Cart</button>
+    <h6><bold>{{  $product->products_price }}</bold></h6>
+    <button class="primary">Add to Cart</button>
              </div>
            </div>
            <div class="row g-2">
             <div class="col">
               <div class="p-3 border bg-light">
                   <table>
-
                     <thead>
                         <tr>
-                            <th scope="col">Description</th>
-                            <th scope="col">Reviews</th>
+                            <th scope="col">Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,78 +77,16 @@
             </div>
            </div>
 
-           {{-- <table style="border-color: #ffffff; border-width: 1px; background-color: #ffffff; border-style: solid;" border="1" cellspacing="0" cellpadding="0">
-            <tbody>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p></p>
-            <p><span style="color: #d4376d;"><strong>Display</strong></span></p>
-            <p><span style="color: #d4376d;"><strong>&nbsp;</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>&nbsp;</p>
-            <p>5.5’’</p>
-            </td>
-            </tr>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p><span style="color: #d4376d;"><strong>Camera&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span></p>
-            <p><span style="color: #d4376d;"><strong>&nbsp;</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>5MP Front Camera</p>
-            <p>5MP Back Camera</p>
-            </td>
-            </tr>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p><span style="color: #d4376d;"><strong>Memory</strong></span></p>
-            <p><span style="color: #d4376d;"><strong>&nbsp;</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>RAM: 1GB</p>
-            <p>ROM:16GB</p>
-            </td>
-            </tr>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p><span style="color: #d4376d;"><strong>Network</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>Sim Type – Single Sim</p>
-            </td>
-            </tr>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p><span style="color: #d4376d;"><strong>OS</strong></span></p>
-            <p><span style="color: #d4376d;"><strong>&nbsp;</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>Android</p>
-            </td>
-            </tr>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p><span style="color: #d4376d;"><strong>Battery</strong></span></p>
-            <p><span style="color: #d4376d;"><strong>&nbsp;</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>2500mAh</p>
-            </td>
-            </tr>
-            <tr>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p><span style="color: #d4376d;"><strong>Warranty</strong></span></p>
-            </td>
-            <td style="border-color: #ffffff; background-color: #ffffff; width: 74px; border-style: solid; border-width: 1px;" valign="top">
-            <p>1 year</p>
-            </td>
-            </tr>
-            </tbody>
-            </table> --}}
+
 @endforeach
-{{-- @endif --}}
+@endif
     </div>
 </div>
+
+
 </section>
 @endsection
+
+
+
+

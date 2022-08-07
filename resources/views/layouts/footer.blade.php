@@ -1,5 +1,5 @@
 
-<footer class="bg-dark pb-0 text-white">
+<footer class="main bg-dark pb-0 text-white">
     <div class="container">
       <div class="row justify-content-md-between gutter-2">
 
@@ -44,7 +44,7 @@
         </div>
 
         <!-- settings -->
-       
+
     </div>
 
     <div class="bg-transparent mt-8 py-2">
