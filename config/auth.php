@@ -16,7 +16,7 @@ return [
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
-        
+
     ],
 
     /*
@@ -41,13 +41,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'customers' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'customers',
+            'provider' => 'admins',
         ],
-        'vendors' => [
-        'driver' => 'session',
-        'provider' => 'vendors'
+        'seller' => [
+            'driver' => 'session',
+            // database name
+            'provider' => 'sellers',
         ],
     ],
 
@@ -73,14 +74,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'customers' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Customers::class,
+            'model' => App\Models\Admin::class,
         ],
-        'vendors' => [
+        'sellers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Vendors::class,
-        ]
+            'model' => App\Models\Seller::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -106,18 +107,6 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        'customers' => [
-            'provider' => 'customers',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        'vendors' => [
-            'provider' => 'vendors',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

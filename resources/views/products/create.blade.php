@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-@if(session()->has('message'))
-    <div class="alert alert-success">
-        {{ session()->get('message') }}
-    </div>
-@elseif ($errors->any())
-    <div class="alert alert-danger">
+@if (session()->has('success_message'))
+<div class="alert alert-success">
+    {{ session()->get('success_message') }}
+</div>
+@endif
 
-    @foreach ($errors->all() as $error)
-       <li class="text-red-500 list-none"{{ $error }}</li>
-    @endforeach
-
-    </div>
+@if(count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 
@@ -24,9 +26,9 @@
       <div class="card-header bg-primary">
         <h3 class="text-light fw-bold">Add New Product</h3>
       </div>
-<div class="card-body p-4">
 
-<section class="container">
+
+
 
 
 <div class="main flex justify-center pt-20">
@@ -88,12 +90,14 @@
         </div>
     </form>
 
+    </div>
+  </div>
+ </div>
 
 
 
 
 
-</section>
-</div>
 
+<br>
 @endsection

@@ -8,6 +8,7 @@ use App\Models\Categories;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -31,8 +32,16 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Products $products)
+    public function create(Request $request, Products $products)
     {
+        // $check = $request->all();
+        // // if everything is correct directed to the admin dashboard
+        // if (Auth::guard('seller')->attempt(['username' => $check['username'], 'password' => $check['password']])) {
+        //     return redirect()->route('products.create')->with('error', 'Admin Login Successful');
+        // } else {
+        //     // when wrong credentials u return to admin.login
+        //     return back()->with('error', 'Invalid Email or Password');
+        // }
         $products = Products::all();
 
         return view('products.create', [
@@ -128,7 +137,7 @@ class ProductsController extends Controller
         // $products = Products::findOrFail($products_id);
 
         return view('products.edit',[
-            'products' => Products::where('products_id',$products_id)
+            'products' => Products::where('products_id',$products_id)->first()
         ]);
 
         // $products = Products::where( $products_id)->first();
@@ -143,55 +152,54 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products_id)
     {
+        // Products::where('products_id',$products_id)->update($request->except([
+        //     '_token','_method']));
+
+            if ($request->hasFile('image')) {
+
+                // $imageName = auth()->user_id;
+                $imageName = time() . '.' . $request->image->extension();
+
+                $request->image->move(public_path('sales'), $imageName);
+
+
+                $name = $request->input('products_name');
+                $price =  $request->input('products_price');
+                $quantity = $request->input('products_quantity');
+                $description = $request->input('products_description');
+                $categories = $request->get('categories_name');
+
+
+                //     // Save the file locally in the storage/public/ folder under a new folder named /product
+
+                // storing by passing an array to the Purchase model
+                $products = Products::where('products_id', $products_id)->update([
+                    'username' =>  $request->get('username'),
+                    'products_name' => $name,
+                    'products_price' => $price,
+                    'products_quantity' => $quantity,
+                    'products_description' => $description,
+                    'products_image' => $imageName,
+                    'categories_id' => $categories,
 
 
 
-        if ($request->hasFile('image')) {
 
-            // $imageName = auth()->user_id;
-            $imageName = time() . '.' . $request->image->extension();
+                    // 'category' => $category
+                ]);
 
-            $request->image->move(public_path('sales'), $imageName);
-
-
-
-            $name = $request->input('products_name');
-            $price =  $request->input('products_price');
-            $quantity = $request->input('products_quantity');
-            $description = $request->input('products_description');
-            $categories = $request->get('categories_name');
-
-
-            //     // Save the file locally in the storage/public/ folder under a new folder named /product
-
-            // storing by passing an array to the Purchase model
-            $products = Products::create([
-                'username' =>  $request->get('username'),
-                'products_name' => $name,
-                'products_price' => $price,
-                'products_quantity' => $quantity,
-                'products_description' => $description,
-                'products_image' => $imageName,
-                'categories_id' => $categories,
+                $categories = DB::select('select categories_id from categories');
 
 
 
+                $products->save(); // Finally, save the record.
+            } else {
 
-                // 'category' => $category
-            ]);
+                return "no file";
+            }
 
-            $categories = DB::select('select categories_id from categories');
+            return redirect('/products')->with('success', 'Product Uploaded Successfully');
 
-
-            Products::whereId($products_id)->update($products);
-
-
-
-            return redirect('/products')->with('success', 'Product Updated Successfully');
-        } else {
-
-            return "no file";
-        }
     }
 
 

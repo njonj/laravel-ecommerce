@@ -13,8 +13,9 @@ class Orders extends Model
 
     protected $primaryKey = 'orders_id';
 
-    public function customers(){
-        return $this->belongsTo(Customers::class);
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function orders_details(){
@@ -22,6 +23,7 @@ class Orders extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(Products::class);
+        return $this->belongsToMany(Products::class)
+        ->withPivot(columns: 'products_quantity');
     }
 }

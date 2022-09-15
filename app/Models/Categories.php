@@ -13,6 +13,6 @@ class Categories extends Model
     protected $fillable = ['categories_id','categories_name','categories_description'];
 
     public function products(){
-        return $this->hasMany(Products::class, 'foreign_key');
+        return $this->belongsToMany(Products::class, 'foreign_key');
     }
 }

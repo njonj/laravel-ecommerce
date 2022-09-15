@@ -1,6 +1,6 @@
 
-<footer class="main bg-dark pb-0 text-white">
-    <div class="container">
+<footer class="container bg-dark pb-0 text-white">
+    <div class="container p-5">
       <div class="row justify-content-md-between gutter-2">
 
         <!-- menu -->

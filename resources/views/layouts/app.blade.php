@@ -6,11 +6,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ asset('panel/assets/images/favicon.png') }}" >
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> {{ config('app.name',  'Sales') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +23,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <style>
 
 body{
@@ -303,20 +310,63 @@ margin: 0 0 0.625rem;
 height: 1px;
 position: relative;
 display: table ;}
+.cart-table-row-right {
+            width: 33%;
+            padding-top: 10px;
+        }
+
+        .cart-table-img {
+            max-height: 75px;
+        }
+
+        .cart-table-actions {
+            text-align: right;
+            font-size: 14px;
+        }
+        .cart-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    .cart-options {
+            color: $text-color;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 300;
+            padding: 0;
+
+            &:hover {
+                color: lighten($text-color, 30%);
+            }
+        }
+    }
+    .checkout-form label{
+        font-size: 12px;
+        font-weight: 700;
+    }
+    .checkout-form input{
+        font-size: 14px;
+        padding: 5px;
+        font-weight: 400;
+    }
 
         </style>
 </head>
 <body>
 
     <div id="app">
+        <button type="button" class="btn btn-outline-info btn-sm">
+            <a href="/products/create">
+            <i class="bi bi-star-fill" style="font-size: -2rem; color: cornflowerblue;"></i> Sell an Item
+            </a>
+            </button>
 
-<div class="main">
+            <nav class="navbar navbar-expand-sm  navbar-light" style="background-color: #e3f2fd;">
 
-
-        <nav class="main navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ url('/products') }}">
+                    <i class="bi bi-unity" style="font-size: 2rem; color: cornflowerblue;"></i>
+                    {{ config('app.name', 'Sales') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -329,8 +379,27 @@ display: table ;}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+<ul class="nav nav-pills justify-content-end">
+    <li class="nav-item">
+        <span class="clearfix">
+            <i class="bi bi-cart4"></i>
+            Cart
+            <span class="basket-item-count">
+                <span class="badge badge-pill red"> 0 </span>
+            </span>
+        </span>
+    {{-- <a href="{{ route('cart.index') }}">
+        <i class="bi bi-cart4"></i>
+            CART
+            <span class="badge rounded-pill bg-danger">
+                {{ Cart::count() }}
+                    </span>
+    </a> --}}
+    </li>
+  <li class="nav-item">
+
+
+      <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -362,7 +431,10 @@ display: table ;}
                                 </div>
                             </li>
                         @endguest
-                    </ul>
+    
+  </li>
+</ul>
+
                 </div>
             </div>
         </nav>
@@ -376,7 +448,8 @@ display: table ;}
 
         </main>
     </div>
-</div>
-
+{{-- custom js --}}
+<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+<script src="//code.tidio.co/23dzcsx6hghnpiql1f4fzbmhuirrdeug.js" async></script>
 </body>
 </html>

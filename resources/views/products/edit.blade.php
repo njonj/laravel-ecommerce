@@ -31,53 +31,55 @@
 
 <div class="main flex justify-center pt-20">
 
-    <form action="{{ route('products.update', $products->products_id)}}" method="PATCH" enctype="multipart/form-data">
+    <form action="{{ route('products.update', $products->products_id)}}" method="POST" enctype="multipart/form-data">
       @csrf
-        <div class="form-group ">
+      @method('PATCH')
+        {{-- <div class="form-group ">
 
             <label for="username"> <strong>Username:</strong> </label>
-            <input type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus" id="floatingInput" placeholder="hcee4,nyto78">
-             </div>
+            <input type="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $products->username }}" required autocomplete="username" autofocus" id="floatingInput" >
+             </div> --}}
              <br>
             <div class="form-group">
                 <label for="products_name"><strong>Name:</strong></label>
-                <input type="text" class="form-control" name="products_name" placeholder="eg: Infinix Smart, CRV 345">
+                <input type="text" class="form-control" name="products_name" value="{{ $products->products_name }}">
             </div>
             <br>
-                 <div class="form-group">
+                 {{-- <div class="form-group">
                 @php( $categories = \App\Models\Categories::all() )
 
                 <label for="category"> <strong> Categories: </strong></label>
+                <input type="text" class="form-control" name="categories_name" value="{{ $products->categories_name }}">
             <select class="form-control" name="categories_name" id="categories_name">
                 @foreach ( $categories as $category )
                   <option value="{{ $category->categories_id }}">{{ $category->categories_name }}</option>
                 @endforeach
             </select>
         </div>
-        <br>
+        <br> --}}
         <div class="form-group">
             <label for="products_image"><strong>Select a Product's Image: </strong></label>
-            <input type="file" id="products_image" name="image">
+            <input type="file" id="products_image" name="products_image">
         </div>
         <br>
         <div class="form-group">
            <label for="price"> <strong>Price:</strong></label>
-           <input type="price" name="products_price">
+           <input type="price" name="products_price" value="{{ $products->products_price }}">
 
         </div>
         <br>
         <div class="form-group">
             <label for="quantity"><strong>Quantity:</strong></label>
-            <input type="number" id="quantity" name="products_quantity">
+            <input type="number" id="quantity" name="products_quantity" value="{{ $products->products_quantity }}">
         </div>
         <br>
         <div class="form-group">
           <label for="description"><strong>Description:</strong></label>
-            <textarea class="form-control" style="height:150px" name="products_description" placeholder="Product's Specifications"></textarea>
+            <textarea class="form-control" style="height:150px" name="products_description" placeholder="Describe the specifications of the product">{{ $products->products_description }}</textarea>
         </div>
         <br>
         <div class=" btn flex justify-center">
-            <input type="submit" value="Add Product" class="btn btn-primary">
+            <input type="submit" value="Update" class="btn btn-primary">
         </div>
         </div>
     </form>
