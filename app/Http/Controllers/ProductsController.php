@@ -106,7 +106,7 @@ class ProductsController extends Controller
             return "no file";
         }
 
-        return redirect('/products')->with('success', 'Product Uploaded Successfully');
+        return to_route('seller.dashboard')->with('success', 'Product Uploaded Successfully');
     }
 
     /**
@@ -118,7 +118,7 @@ class ProductsController extends Controller
     public function show($products_id)
     {
 
-        $products = DB::select('select * from products where products_id=' .$products_id);
+        $products = DB::select('select * from products where products_id=' . $products_id);
 
 
         return view('products.show', [
@@ -136,8 +136,8 @@ class ProductsController extends Controller
     {
         // $products = Products::findOrFail($products_id);
 
-        return view('products.edit',[
-            'products' => Products::where('products_id',$products_id)->first()
+        return view('products.edit', [
+            'products' => Products::where('products_id', $products_id)->first()
         ]);
 
         // $products = Products::where( $products_id)->first();
@@ -155,51 +155,50 @@ class ProductsController extends Controller
         // Products::where('products_id',$products_id)->update($request->except([
         //     '_token','_method']));
 
-            if ($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
 
-                // $imageName = auth()->user_id;
-                $imageName = time() . '.' . $request->image->extension();
+            // $imageName = auth()->user_id;
+            $imageName = time() . '.' . $request->image->extension();
 
-                $request->image->move(public_path('sales'), $imageName);
-
-
-                $name = $request->input('products_name');
-                $price =  $request->input('products_price');
-                $quantity = $request->input('products_quantity');
-                $description = $request->input('products_description');
-                $categories = $request->get('categories_name');
+            $request->image->move(public_path('sales'), $imageName);
 
 
-                //     // Save the file locally in the storage/public/ folder under a new folder named /product
-
-                // storing by passing an array to the Purchase model
-                $products = Products::where('products_id', $products_id)->update([
-                    'username' =>  $request->get('username'),
-                    'products_name' => $name,
-                    'products_price' => $price,
-                    'products_quantity' => $quantity,
-                    'products_description' => $description,
-                    'products_image' => $imageName,
-                    'categories_id' => $categories,
+            $name = $request->input('products_name');
+            $price =  $request->input('products_price');
+            $quantity = $request->input('products_quantity');
+            $description = $request->input('products_description');
+            $categories = $request->get('categories_name');
 
 
+            //     // Save the file locally in the storage/public/ folder under a new folder named /product
 
-
-                    // 'category' => $category
-                ]);
-
-                $categories = DB::select('select categories_id from categories');
+            // storing by passing an array to the Purchase model
+            $products = Products::where('products_id', $products_id)->update([
+                'username' =>  $request->get('username'),
+                'products_name' => $name,
+                'products_price' => $price,
+                'products_quantity' => $quantity,
+                'products_description' => $description,
+                'products_image' => $imageName,
+                'categories_id' => $categories,
 
 
 
-                $products->save(); // Finally, save the record.
-            } else {
 
-                return "no file";
-            }
+                // 'category' => $category
+            ]);
 
-            return redirect('/products')->with('success', 'Product Uploaded Successfully');
+            $categories = DB::select('select categories_id from categories');
 
+
+
+            $products->save(); // Finally, save the record.
+        } else {
+
+            return "no file";
+        }
+
+        return redirect('/products')->with('success', 'Product Uploaded Successfully');
     }
 
 

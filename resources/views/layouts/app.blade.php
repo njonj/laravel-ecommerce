@@ -431,7 +431,7 @@ display: table ;}
                                 </div>
                             </li>
                         @endguest
-    
+
   </li>
 </ul>
 

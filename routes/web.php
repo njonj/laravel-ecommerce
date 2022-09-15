@@ -51,7 +51,7 @@ Route::prefix('seller')->group(function () {
 
 //products
 Route::resource('products', ProductsController::class);
-// Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->middleware('seller');
+Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->middleware('seller');
 
 // categories
 Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phones');

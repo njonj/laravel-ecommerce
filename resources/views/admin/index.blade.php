@@ -11,7 +11,7 @@
                          <span><i class="fa fa-code"></i></span>
                           <h2 class="timer count-number" data-to="300" data-speed="1500"></h2>
                     </div>
-                 
+
                    <p class="count-text ">SomeText GoesHere</p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                          <h2 class="timer count-number" data-to="11900" data-speed="1500"></h2>
                     </div>
                     <p class="count-text ">SomeText GoesHere</p>
-                      
+
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
@@ -53,6 +53,9 @@
                 <div class="panel_title"><span>FooTable with row toggler, sorting, filter and pagination</span></div>
             </div>
             <div class="panel_body">
+                @foreach ($user as $item)
+
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
@@ -68,12 +71,14 @@
                       <tbody>
                           <tr>
                               <td>1</td>
-                              <td>Dennise</td>
-                              <td>Fuhrman</td>
-                              <td>High School History Teacher</td>
-                              <td>November 8th 2011</td>
+                              <td>{{ $item->name }}</td>
+                              <td>{{ $item->email }}</td>
+                              <td>{{ $item->phone_no }}</td>
+                              <td>{{ $item->username }}</td>
                               <td>July 25th 1960</td>
                           </tr>
+                      </tbody>
+                          @endforeach
                           <tr>
                               <td>2</td>
                               <td>Elodia</td>
@@ -159,7 +164,7 @@
                             <canvas id="bar-canvas" ></canvas>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="panel">
@@ -172,10 +177,10 @@
                     <div class="panel_body">
                         <div id="piechart"></div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
-    </section>                   
+    </section>
 </div><!--/middle content wrapper-->
 </div><!--/ content wrapper -->
 @endsection

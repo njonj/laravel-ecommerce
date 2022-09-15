@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <link rel="icon" href="{{ asset('panel/assets/images/favicon.png') }}" >
         <!--Page title-->
-        <title>Admin E-Sales</title>
+        <title>Seller E-Sales</title>
         <!--bootstrap-->
         <link rel="stylesheet" href="{{ asset('panel/assets/css/bootstrap.min.css') }}">
         <!--font awesome-->
