@@ -30,9 +30,9 @@
 
 
 
-                    <div class="progress" style="width: 25%">
+                    {{-- <div class="progress" style="width: 25%">
                     <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{ $product->products_quantity }}</div>
-                  </div>
+                  </div> --}}
             </div>
         </div>
 

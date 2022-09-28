@@ -4,7 +4,7 @@
       <div class="row justify-content-md-between gutter-2">
 
         <!-- menu -->
-        <div class="order-1 col-md-8 col-lg-4">
+        {{-- <div class="order-1 col-md-8 col-lg-4">
           <div class="row">
             <div class="col">
               <h4 class="eyebrow mb-1">Company</h4>
@@ -25,7 +25,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> --}}
 
         <!-- subscribe -->
         <div class="order-2 order-md-3 order-lg-2 col-md-8 col-lg-4">
@@ -51,7 +51,7 @@
       <div class="container">
         <div class="row align-items-center gutter-1">
           <div class="col-md-8">
-            <p class="small text-muted">© 2020 SHOPY. Product images by <a href="https://www.oakandfort.com" class="underline">OAK + FORT</a>. Bootstrap template by <a href="https://htmlhunters.com" class="underline">HTMLHUNTERS</a>.</p>
+            <p class="small text-muted">© 2022 ESALES. </p>
           </div>
           <div class="col-md-4 text-md-right text-muted">
             <ul class="list list--horizontal list--separated">

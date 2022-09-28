@@ -18,7 +18,7 @@ class ProductsController extends Controller
     // public function __construct()
     // {
 
-    //     $this->middleware(['auth.login'], ['url' => 'vendors'], ['except' => 'index', 'show']);
+    //     $this->middleware([Auth::guard('seller')], ['except' => 'index', 'show']);
     // }
 
 
@@ -34,14 +34,14 @@ class ProductsController extends Controller
      */
     public function create(Request $request, Products $products)
     {
-        // $check = $request->all();
-        // // if everything is correct directed to the admin dashboard
-        // if (Auth::guard('seller')->attempt(['username' => $check['username'], 'password' => $check['password']])) {
-        //     return redirect()->route('products.create')->with('error', 'Admin Login Successful');
-        // } else {
-        //     // when wrong credentials u return to admin.login
-        //     return back()->with('error', 'Invalid Email or Password');
-        // }
+        $check = $request->all();
+        // if everything is correct directed to the admin dashboard
+        if (Auth::guard('seller')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+            return redirect()->route('products.create')->with('error', 'Admin Login Successful');
+        } else {
+            // when wrong credentials u return to admin.login
+            return back()->with('error', 'Invalid Email or Password');
+        }
         $products = Products::all();
 
         return view('products.create', [
@@ -106,7 +106,8 @@ class ProductsController extends Controller
             return "no file";
         }
 
-        return to_route('seller.dashboard')->with('success', 'Product Uploaded Successfully');
+        return redirect()->route('seller.dashboard')->with('error', 'Product Uploaded Successfully');
+        // return to_route('seller.dashboard')->with('success', 'Product Uploaded Successfully');
     }
 
     /**

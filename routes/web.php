@@ -30,7 +30,7 @@ require __DIR__ . '/auth.php';
 Route::prefix('admin')->group(function () {
     Route::get('/login', 'App\Http\Controllers\AdminController@index')->name('login_from');
     Route::post('/login/owner', 'App\Http\Controllers\AdminController@login')->name('admin.login');
-    Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('admin.dashboard')->middleware('admin');
+    Route::get('/dashboard', 'App\Http\Controllers\AdminController@show')->name('admin.dashboard')->middleware('admin');
     Route::get('/logout', 'App\Http\Controllers\AdminController@adminlogout')->name('admin.logout')->middleware('admin');
     Route::get('/register', 'App\Http\Controllers\AdminController@adminregister')->name('admin.register');
     Route::post('/register/owner', 'App\Http\Controllers\AdminController@adminregistercreate')->name('admin.register.create');

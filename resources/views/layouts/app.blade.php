@@ -349,7 +349,27 @@ display: table ;}
         padding: 5px;
         font-weight: 400;
     }
-
+    #live-engage-btn {
+    position: fixed;
+    bottom: 0;
+    right: 12px;
+    z-index: 1000;
+    font-weight: 350;
+}
+.button.button--rounded-top {
+    background-color: #0078d4;
+    border: 1px solid #0078d4;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    min-height: 40px;
+    padding: 10px 18px;
+    width: auto;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    box-shadow: 0 -5px 10px rgb(0 0 0 / 14%);
+}
         </style>
 </head>
 <body>
@@ -450,6 +470,39 @@ display: table ;}
     </div>
 {{-- custom js --}}
 <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-<script src="//code.tidio.co/23dzcsx6hghnpiql1f4fzbmhuirrdeug.js" async></script>
+{{-- <script src="//code.tidio.co/gpkk1oepsv9krx4arxdahsgfb32jls7x.js" async></script> --}}
+
+<script type="text/javascript">
+    (function () {
+        var options = {
+            whatsapp: "+254748148093", // WhatsApp number
+            call_to_action: "Message us", // Call to action
+            position: "left", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- Smartsupp Live Chat script -->
+{{-- <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = '942c9ca8523ca4326770b6495ef9802710864352';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script> --}}
+
+    <button type="button" id="live-engage-btn" class="button button--rounded-top" data-bi-an="chat" data-bi-id="expand-chat" data-bi-bhvr="16" data-bi-chtid="azure chat 1" data-bi-chtnm="live person chat" data-lp-event="click">
+        <span>Chat with Sales</span>
+        <iframe src='https://webchat.botframework.com/embed/suppor?s=JYz2Sgy83XQ.eDAhiniC8O4l6hqP16yM87VooblmDoGtCyd43jnRBfk'  style='min-width: 100px; width: 10 0%; min-height: 100px;'></iframe>
+
+</button>
 </body>
 </html>
+
+

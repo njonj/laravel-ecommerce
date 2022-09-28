@@ -53,11 +53,12 @@
                 <div class="panel_title"><span>FooTable with row toggler, sorting, filter and pagination</span></div>
             </div>
             <div class="panel_body">
-                @foreach ($user as $item)
+                {{-- @foreach ($user as $item) --}}
 
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
+                        
                         <thead>
                           <tr>
                               <th>ID</th>
@@ -68,17 +69,19 @@
                               <th data-hide="all">Date of Birth</th>
                           </tr>
                       </thead>
+                      
                       <tbody>
+                        @foreach ($user as $item)
                           <tr>
                               <td>1</td>
                               <td>{{ $item->name }}</td>
                               <td>{{ $item->email }}</td>
                               <td>{{ $item->phone_no }}</td>
-                              <td>{{ $item->username }}</td>
+                              {{-- <td>{{ $user->username }}</td> --}}
                               <td>July 25th 1960</td>
                           </tr>
-                      </tbody>
-                          @endforeach
+                      </tbody> 
+                         @endforeach
                           <tr>
                               <td>2</td>
                               <td>Elodia</td>

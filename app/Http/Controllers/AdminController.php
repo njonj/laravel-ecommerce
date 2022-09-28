@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -16,9 +17,17 @@ class AdminController extends Controller
         return view('admin.admin_login');
     }
 
-    public function dashboard()
+    public function show(User $id)
     {
-        return view('admin.index');
+
+        // $id = User::find($id);
+
+        $user = DB::select('select * from users');
+// dd($user);
+
+        return view('admin.index', [
+            'user' => $user
+        ]);
     }
 
     public function login(Request $request)
@@ -40,12 +49,14 @@ class AdminController extends Controller
         return redirect()->route('login_from')->with('error', 'Admin Logout Successful');
     }
 
-    public function adminregister(){
+    public function adminregister()
+    {
 
         return view('admin.admin_register');
     }
 
-    public function adminregistercreate(Request $request){
+    public function adminregistercreate(Request $request)
+    {
         Admin::insert([
             'name' => $request->name,
             'username' => $request->username,
