@@ -52,13 +52,12 @@ Route::prefix('seller')->group(function () {
 //products
 Route::resource('products', ProductsController::class);
 Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->middleware('seller');
-
+Route::get('cart', 'App\Http\Controllers\ProductsController@cart');
+Route::get('add-to-cart/{id}', 'App\Http\Controllers\ProductsController@addToCart');
+Route::patch('update-cart', 'App\Http\Controllers\ProductsController@upgrade');
+Route::delete('remove-from-cart', 'App\Http\Controllers\ProductsController@remove');
 // categories
 Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phones');
 Route::get('/categories/laptops', 'App\Http\Controllers\CategoriesController@laptops');
 Route::get('/categories/electronics', 'App\Http\Controllers\CategoriesController@electronics');
 
-// cart functionality
-Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addtocart');
-Route::get('/load-cart-data', 'App\Http\Controllers\CartController@cartloadbyajax');
-Route::get('/cart', 'App\Http\Controllers\CartController@index');

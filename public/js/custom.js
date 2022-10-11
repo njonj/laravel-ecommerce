@@ -1,5 +1,5 @@
 // Add to Cart code
-$(document).ready(function () {
+$ (document).ready(function () {
     $('.add-to-cart-btn').click(function (e) {
         e.preventDefault();
 

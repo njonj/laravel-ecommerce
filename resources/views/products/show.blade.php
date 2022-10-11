@@ -26,15 +26,10 @@
     </div>
     <div class="py-3">
     <div class="row">
-        <div class="col md-3 col-3">
-            <input type="hidden" class="product_id" value="{{ $product->products_id }}" >
-            <input type="number" class="qty-input form-control" value={{ $product->products_quantity }}>
-        </div>
+
 
     <div class="col md-6 ">
-        <button type="button" class="add-to-cart-btn btn btn-warning btn-block float-start text-center m-0 py-2 px-3" >Add to Cart</button>
-        {{-- <p class="btn-holder"><a href="{{ url('add-to-cart/'.$product->products_name) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p> --}}
-
+        <p class="btn-holder"><a href="{{ url('add-to-cart/' .$product->products_id) }}" class="btn btn-warning btn-block text-center" role="button">  <i class="bi bi-cart4"></i> Add to cart</a> </p>
     </div>
              </div>
            </div>
@@ -53,15 +48,7 @@
                         </tr>
                     </tbody>
                   </table>
-                  <div class="d-flex">
-                    <a href="{{ route ('products.edit', $product->products_id) }}" class="btn btn-primary m-1">Edit</a>
-
-                    <form action="{{ route('products.destroy', $product->products_id ) }}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button class="btn btn-danger m-1">Delete</button>
-                    </form>
-                </div>
+                 
               </div>
             </div>
            </div>

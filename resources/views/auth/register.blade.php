@@ -19,11 +19,25 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus aria-placeholder="Enter  Name" />
             </div>
 
+            <!-- Username -->
+            <div class="mt-4">
+                <x-label for="username" :value="__('Username')" />
+
+                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required aria-placeholder="Enter  Username" />
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required aria-placeholder="Enter  Email" />
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mt-4">
+                <x-label for="phone_no" :value="__('Phone Number')" />
+
+                <x-input id="phone_no" class="block mt-1 w-full" type="phone" name="phone_no" :value="old('phone_no')" required aria-placeholder="Enter  Phone Number" />
             </div>
 
             <!-- Password -->

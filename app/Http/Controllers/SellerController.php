@@ -3,14 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Seller;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 
 class SellerController extends Controller
 {
+    public function show(Products $products_id)
+    {
+
+        // $id = User::find($id);
+
+        $product = DB::select('select * from products');
+        // dd($user);
+
+        return view('seller.index', [
+            'products' => $product
+        ]);
+    }
     public function sellerindex()
     {
         return view('seller.seller_login');
@@ -40,12 +54,14 @@ class SellerController extends Controller
         return redirect()->route('seller_login_from')->with('error', 'Seller Logout Successful');
     }
 
-    public function sellerregister(){
+    public function sellerregister()
+    {
 
         return view('seller.seller_register');
     }
 
-    public function sellerregistercreate(Request $request){
+    public function sellerregistercreate(Request $request)
+    {
         Seller::insert([
             'name' => $request->name,
             'username' => $request->username,

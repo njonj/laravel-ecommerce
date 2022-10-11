@@ -55,7 +55,7 @@
                     </div>
             </div>
           </div>
-         
+
         <!-- Left and right controls/icons -->
         <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
           <span class="carousel-control-prev-icon"></span>
@@ -93,8 +93,8 @@
               <h5 class="card-title">Port 1</h5>
               <p class="card-text">Kshs 500</p>
             </div>
-          </div> 
-       
+          </div>
+
 
       </div>
       <div class="col-md-2">
@@ -139,9 +139,9 @@
                       <h5 class="card-title">Port 1</h5>
                       <p class="card-text">Kshs 500</p>
                     </div>
-                  </div> 
-               
-        
+                  </div>
+
+
               </div>
               <div class="col-md-2">
                 <div class="card">
@@ -152,7 +152,7 @@
                   </div>
                 </div>
               </div>
-        
+
               <div class="col-md-2">
                 <div class="card">
                   <img src="{{ asset('storage/images/port3.jpg') }}" class="card-img-top" alt="...">
@@ -163,7 +163,7 @@
                 </div>
               </div>
             </div>
-      
+
    </section>
 
 <section class="container-fluid pt-lg-3 mb-4 mb-sm-5">
@@ -189,8 +189,8 @@
               <h5 class="card-title">Port 1</h5>
               <p class="card-text">Kshs 500</p>
             </div>
-          </div> 
-       
+          </div>
+
 
       </div>
       <div class="col-md-2 ">

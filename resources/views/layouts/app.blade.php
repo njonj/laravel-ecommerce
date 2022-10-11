@@ -16,6 +16,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,6 +24,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <style>
@@ -30,32 +32,12 @@
 body{
 background-color: #f5eaea
 }
-        .sidebar {
-          height: 100%;
-          width: 160px;
-          position: fixed;
-          z-index: 5;
-          top: 0;
-          left: 0;
-          background-color: #111;
-          overflow-x: hidden;
-          padding-top: 16px;
-        }
-
-        .sidebar a {
-          padding: 6px 8px 6px 16px;
-          text-decoration: none;
-          font-size: 20px;
-          color: #818181;
-          display: block;
-        }
-
-        .sidebar a:hover {
-          color: #f1f1f1;
-        }
 .carousel slide{
     margin-left: 110px;
     padding: 0px 10px;
+}
+.li{
+    list-style: none;
 }
 table {
     display: table;
@@ -290,65 +272,6 @@ a {
 *, *::before, *::after {
     box-sizing: border-box;
 }
-.star-rating {
-    display: block;
-    cursor: pointer;
-    float: none;
-    position: relative;
-    font-size: 11px;
-    height: 1em;
-    line-height: 1em;
-    overflow: hidden;
-    position: relative;
-    width: 6em;
-    letter-spacing: .1em;
-    text-align: left;
-    white-space: nowrap;
-}
-.rating-wrap{
-margin: 0 0 0.625rem;
-height: 1px;
-position: relative;
-display: table ;}
-.cart-table-row-right {
-            width: 33%;
-            padding-top: 10px;
-        }
-
-        .cart-table-img {
-            max-height: 75px;
-        }
-
-        .cart-table-actions {
-            text-align: right;
-            font-size: 14px;
-        }
-        .cart-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
-    }
-    .cart-options {
-            color: $text-color;
-            background: transparent;
-            font-size: 14px;
-            font-weight: 300;
-            padding: 0;
-
-            &:hover {
-                color: lighten($text-color, 30%);
-            }
-        }
-    }
-    .checkout-form label{
-        font-size: 12px;
-        font-weight: 700;
-    }
-    .checkout-form input{
-        font-size: 14px;
-        padding: 5px;
-        font-weight: 400;
-    }
     #live-engage-btn {
     position: fixed;
     bottom: 0;
@@ -370,20 +293,44 @@ display: table ;}
     border-top-left-radius: 4px;
     box-shadow: 0 -5px 10px rgb(0 0 0 / 14%);
 }
+
+
+element.style {
+    display: none;
+    height: 564px;
+    min-width: 400px;
+    max-width: 400px;
+}
+#lp-iframe-container {
+    border: 0;
+    bottom: 0;
+    box-shadow: 0 5px 15px 0 #00000033;
+    height: 500px;
+    left: auto!important;
+    min-width: 300px;
+    max-width: 350px;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: auto!important;
+    z-index: 1001;
+}
+/* The Modal (background) */
+
         </style>
 </head>
 <body>
 
     <div id="app">
-        <button type="button" class="btn btn-outline-info btn-sm">
+        <button type="button" class="btn btn-outline-info btn-sm mt-0 mb-0">
             <a href="/products/create">
             <i class="bi bi-star-fill" style="font-size: -2rem; color: cornflowerblue;"></i> Sell an Item
             </a>
             </button>
 
-            <nav class="navbar navbar-expand-sm  navbar-light" style="background-color: #e3f2fd;">
+            <nav class="navbar navbar-expand-sm  navbar-light mt-0" style="background-color: #e3f2fd;">
 
-            <div class="container-fluid">
+
                 <a class="navbar-brand" href="{{ url('/products') }}">
                     <i class="bi bi-unity" style="font-size: 2rem; color: cornflowerblue;"></i>
                     {{ config('app.name', 'Sales') }}
@@ -395,68 +342,102 @@ display: table ;}
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                       
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-<ul class="nav nav-pills justify-content-end">
-    <li class="nav-item">
-        <span class="clearfix">
-            <i class="bi bi-cart4"></i>
-            Cart
-            <span class="basket-item-count">
-                <span class="badge badge-pill red"> 0 </span>
-            </span>
-        </span>
-    {{-- <a href="{{ route('cart.index') }}">
-        <i class="bi bi-cart4"></i>
-            CART
-            <span class="badge rounded-pill bg-danger">
-                {{ Cart::count() }}
-                    </span>
-    </a> --}}
-    </li>
-  <li class="nav-item">
-
-
-      <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+              <div class="li">
+                <li class="nav-item">
+                    
+                <button type="button" class="btn btn-info" data-toggle="dropdown">
+                    <a href="{{ url('cart') }}">
+                    <i class="bi bi-cart4" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <div class="row total-header-section">
+                        
+                        <div class="col-lg-6 col-sm-6 col-6">
+                            <i class="bi bi-cart4" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                        </div>
+                        <?php $total = 0 ?>
+                        @foreach((array) session('cart') as $id => $details)
+                            <?php $total += $details['price'] * $details['quantity'] ?>
+                        @endforeach
+                        <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
+                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                        </div>
+                  
+                    </div>
+                
+                    @if(session('cart'))
+                        @foreach(session('cart') as $id => $details)
+                            <div class="row cart-detail">
+                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                    <img src="{{ $details['image'] }}" />
                                 </div>
-                            </li>
-                        @endguest
+                                <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                    <p>{{ $details['name'] }}</p>
+                                    <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                    
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
+                            <a href="{{ url('/products/cart') }}" class="btn btn-primary btn-block">View all</a>
+                        </div>
+                    </div>
+                
+                </div>
+           </li>
+        </div>
+            <!-- Authentication Links -->
+            @guest
+            @if (Route::has('login'))
+            <div class="li">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+            </div>
+            @endif
 
-  </li>
-</ul>
+            @if (Route::has('register'))
+            <div class="li">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            </div>
+            @endif
+            @else
+            <div class="li">
+            <li class="nav-item dropdown">
+
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                    {{ Auth::user()->name }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </div>
+            @endguest
+         
+
+
 
                 </div>
-            </div>
+
         </nav>
 
         <main class="py-4">
@@ -468,40 +449,44 @@ display: table ;}
 
         </main>
     </div>
-{{-- custom js --}}
+
 <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-{{-- <script src="//code.tidio.co/gpkk1oepsv9krx4arxdahsgfb32jls7x.js" async></script> --}}
 
-<script type="text/javascript">
-    (function () {
-        var options = {
-            whatsapp: "+254748148093", // WhatsApp number
-            call_to_action: "Message us", // Call to action
-            position: "left", // Position may be 'right' or 'left'
-        };
-        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
-</script>
-<!-- Smartsupp Live Chat script -->
-{{-- <script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '942c9ca8523ca4326770b6495ef9802710864352';
-    window.smartsupp||(function(d) {
-      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-      c.type='text/javascript';c.charset='utf-8';c.async=true;
-      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-    </script> --}}
 
-    <button type="button" id="live-engage-btn" class="button button--rounded-top" data-bi-an="chat" data-bi-id="expand-chat" data-bi-bhvr="16" data-bi-chtid="azure chat 1" data-bi-chtnm="live person chat" data-lp-event="click">
-        <span>Chat with Sales</span>
-        <iframe src='https://webchat.botframework.com/embed/suppor?s=JYz2Sgy83XQ.eDAhiniC8O4l6hqP16yM87VooblmDoGtCyd43jnRBfk'  style='min-width: 100px; width: 10 0%; min-height: 100px;'></iframe>
 
+
+
+<button  id="live-engage-btn" class="button button--rounded-top position-static hide"  data-bi-an="chat" data-bi-id="expand-chat" data-bi-bhvr="16" data-bi-chtid="azure chat 1" data-bi-chtnm="live person chat" data-lp-event="click" >
+    <span><i class="bi bi-chat-left-dots-fill"></i> Chat with Sales</span>
 </button>
+
+
+
+
+    <div id="lp-iframe-container" class="lpChatiFrameContainer" style="display: none; height: 564px; min-width: 400px; max-width: 400px;" aria-hidden="true">
+
+        <template id="lp-iframe-template">
+            <iframe title="Chat with Sales" src='https://webchat.botframework.com/embed/suppor?s=JYz2Sgy83XQ.qDDwJSI9ZzpG_laM9ibv3g8x4JprrehS1ruwwuWqwu8' style='min-width: 200px; width: 100%; min-height: 550px; ' id="iFrame" allow="camera;microphone" data-lpcurl="https://azure.microsoft.com/en-us/products/bot-services/" data-domainurl="https://publisher.liveperson.net"></iframe>
+            <script defer="" src="//azurecomcdn.azureedge.net/cvt-c291416aef9d1a5aef34e35ef15bb1b2c98a88abf7d589f5d3cb68843cf57a2a/scripts/Acom/Components/LivePersonChat-iframe.js" crossorigin="anonymous" onerror="cdnfallback()"></script>;
+        </template>
+        <script>
+            (function () {
+                function loadLpcIframe() {
+                    const template = document.getElementById('lp-iframe-template');
+                    var lpIframeContainer = document.getElementById('lp-iframe-container');
+                    lpIframeContainer.appendChild(template.content.cloneNode(true));
+                }
+                window.addEventListener('load', loadLpcIframe);
+            })();
+        </script>
+
+            </div>
+
+
+
+
+
+
 </body>
 </html>
 

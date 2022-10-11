@@ -58,189 +58,15 @@
                               </form>
                         </div>
                     </li>
-                    <li><a data-toggle="dropdown" href="#"><i class="far fa-envelope"></i><span>4</span></a>
-                        <div class="dropdown_wrapper messages_item dropdown-menu dropdown-menu-right">
-                            <div class="dropdown_header">
-                                <p>you have 4 messages</p>
-                            </div>
-                            <ul class="dropdown_body nice_scroll scrollbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user1.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Madelyn <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello Sam...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user2.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Melvin <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello jhon...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user3.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Olinda <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello jhon...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user1.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Johnson <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello Olinda...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user3.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Madelyn <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello Sam...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user2.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Melvin <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello jhon...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user3.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Olinda <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello jhon...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <img src="panel/assets/images/user1.jpg" alt="" class="img-fluid">
-                                        </div>
-                                        <div class="text-part">
-                                            <h6>Johnson <span><i class="far fa-clock"></i> today</span></h6>
-                                            <p>Hello Olinda...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="dropdown_footer">
-                                <a href="#">See All Messages</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li><a href="#" data-toggle="dropdown"><i class="far fa-bell"></i><span>9</span></a>
-                        <div class="dropdown_wrapper notification_item dropdown-menu dropdown-menu-right">
-                            <div class="dropdown_header">
-                                <p>You have 9 notifications</p>
-                            </div>
-                            <ul class="dropdown_body scrollbar nice_scroll">
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-success"><i class="fas fa-users"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p>5 new members joined</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p> Very long description here that may...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-success"><i class="fas fa-cart-plus"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p> 25 sales made</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
+
+
+                                {{-- <li>
                                     <a href="#">
                                         <div class="img-part">
                                             <span class="text-warning"><i class="fas fa-user"></i></span>
                                         </div>
                                         <div class="text-part">
-                                            <p> You changed your username</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-success"><i class="fas fa-users"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p>5 new members joined</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-danger"><i class="fas fa-exclamation-triangle"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p> Very long description here that may...</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-success"><i class="fas fa-cart-plus"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p> 25 sales made</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="img-part">
-                                            <span class="text-warning"><i class="fas fa-user"></i></span>
-                                        </div>
-                                        <div class="text-part">
-                                            <p> You changed your username</p>
+
                                         </div>
                                     </a>
                                 </li>
@@ -249,7 +75,7 @@
                                 <a href="#">view All</a>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
                     <li><a data-toggle="dropdown" href="#"><i class="far fa-user"></i></a>
                             <div class="user_item dropdown-menu dropdown-menu-right">
                                 <div class="admin">
@@ -271,7 +97,7 @@
                 </ul>
             </header><!-- / header area -->
             <!-- sidebar area -->
-            <aside class="sidebar-wrapper ">
+            {{-- <aside class="sidebar-wrapper ">
               <nav class="sidebar-nav">
                  <ul class="metismenu" id="menu1">
                     <li class="single-nav-wrapper">
@@ -388,7 +214,7 @@
                       </li>
                     </ul>
               </nav>
-            </aside><!-- /sidebar Area-->
+            </aside><!-- /sidebar Area--> --}}
 
 
 
@@ -407,7 +233,7 @@
 
     @endif
 
-    <h4>Login Admin Name : {{  Auth::guard('seller')->user()->username }}</h4>
+    <h4>Seller Admin Name : {{  Auth::guard('seller')->user()->username }}</h4>
 
 @yield('seller')
 
