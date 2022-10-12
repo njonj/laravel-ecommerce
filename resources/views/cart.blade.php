@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <div class="row">
 
+ 
+<form action="{{ route('create.order') }}" method="post">
+    @csrf
 <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -55,7 +60,14 @@
         </tr>
 
     </tfoot>
+     <form action="{{route('book.pay', ['cart_total'=>$subTotal, 'user_id'=>auth()->id()])}}" method="POST">
+                    @csrf
+                <button type="submit" class="btn btn-success">CHECKOUT with M-PESA</button>
+                </form>
 </table>
+</form>
+</div>
+</div>
 @endsection
 
 @section('scripts')

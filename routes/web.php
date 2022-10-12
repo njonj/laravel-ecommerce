@@ -52,12 +52,13 @@ Route::prefix('seller')->group(function () {
 //products
 Route::resource('products', ProductsController::class);
 Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->middleware('seller');
-Route::get('cart', 'App\Http\Controllers\ProductsController@cart');
-Route::get('add-to-cart/{id}', 'App\Http\Controllers\ProductsController@addToCart');
-Route::patch('update-cart', 'App\Http\Controllers\ProductsController@upgrade');
-Route::delete('remove-from-cart', 'App\Http\Controllers\ProductsController@remove');
+Route::get('cart', 'App\Http\Controllers\ProductsController@cart')->middleware('auth');
+Route::get('add-to-cart/{id}', 'App\Http\Controllers\ProductsController@addToCart')->middleware('auth');
+Route::patch('update-cart', 'App\Http\Controllers\ProductsController@upgrade')->middleware('auth');
+Route::delete('remove-from-cart', 'App\Http\Controllers\ProductsController@remove')->middleware('auth');
 // categories
 Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phones');
 Route::get('/categories/laptops', 'App\Http\Controllers\CategoriesController@laptops');
 Route::get('/categories/electronics', 'App\Http\Controllers\CategoriesController@electronics');
 
+Route::post('/create/order', 'App\Http\Controllers\OrderController@add');

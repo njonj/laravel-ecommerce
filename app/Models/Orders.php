@@ -13,6 +13,8 @@ class Orders extends Model
 
     protected $primaryKey = 'orders_id';
 
+    protected $fillable=["id", "amount","paymentStatus"];
+
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -23,7 +25,7 @@ class Orders extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(Products::class)
+        return $this->hasMany(Products::class)
         ->withPivot(columns: 'products_quantity');
     }
 }

@@ -37,7 +37,7 @@ class MpesaController extends Controller
         $timestamp = Carbon::rawParse('now')->format('YmdHms');
         $password = base64_encode($BusinessShortCode.$passkey.$timestamp);
         $amount = 5;
-        $PartyA = 254748148093;
+        $PartyA = 254742171238;
         $PartyB = 174379;
 
 
@@ -58,7 +58,7 @@ class MpesaController extends Controller
             'PartyA' => $PartyA, // replace this with your phone number
             'PartyB' => $PartyB,
             'PhoneNumber' => $PartyA, // replace this with your phone number
-            'CallBackURL' => 'https://8b3e-102-68-76-249.eu.ngrok.io/Humapp',
+            'CallBackURL' => 'https://d7bd-102-68-76-249.eu.ngrok.io/Humapp',
             'AccountReference' => "Esales",
             'TransactionDesc' => "Payment of X"
         ];
