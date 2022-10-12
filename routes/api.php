@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\MpesaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,5 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('v1/access/token', 'PaymentController@generateAccessToken');
-Route::post('v1/cart/stk/push', 'PaymentController@customerMpesaSTKPush');
+// Route::post('v1/access/token', 'PaymentController@generateAccessToken');
+// Route::post('v1/cart/stk/push', 'PaymentController@customerMpesaSTKPush');
+
+// mpesa controller
+Route::post('v1/access/token', 'App\Http\Controllers\API\MpesaController@generateAccessToken');
+Route::post('v1/cart/stk/push', 'App\Http\Controllers\API\MpesaController@STKpush');
