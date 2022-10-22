@@ -316,6 +316,54 @@ element.style {
     z-index: 1001;
 }
 /* The Modal (background) */
+#nav{
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+#nav a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+#nav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+#nav a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.carousel {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  #nav {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  #nav a {float: left;}
+  div.carousel {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  #nav a {
+    text-align: center;
+    float: none;
+  }
+}
 
         </style>
 </head>
@@ -331,7 +379,7 @@ element.style {
             <nav class="navbar navbar-expand-sm  navbar-light mt-0" style="background-color: #e3f2fd;">
 
 
-                <a class="navbar-brand" href="{{ url('/products') }}">
+                <a class="navbar-brand" href="{{ url('products') }}">
                     <i class="bi bi-unity" style="font-size: 2rem; color: cornflowerblue;"></i>
                     {{ config('app.name', 'Sales') }}
                 </a>
@@ -342,101 +390,46 @@ element.style {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                       
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-              <div class="li">
-                <li class="nav-item">
-                    
-                <button type="button" class="btn btn-info" data-toggle="dropdown">
-                    <a href="{{ url('cart') }}">
-                    <i class="bi bi-cart4" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
-                </button>
-                <div class="dropdown-menu">
-                    
-                    <div class="row total-header-section">
-                        
-                        <div class="col-lg-6 col-sm-6 col-6">
-                            <i class="bi bi-cart4" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
-                        </div>
-                        <?php $total = 0 ?>
-                        @foreach((array) session('cart') as $id => $details)
-                            <?php $total += $details['price'] * $details['quantity'] ?>
-                        @endforeach
-                        <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
-                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
-                        </div>
-                  
-                    </div>
-                
-                    @if(session('cart'))
-                        @foreach(session('cart') as $id => $details)
-                            <div class="row cart-detail">
-                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                    <img src="{{ $details['image'] }}" />
-                                </div>
-                                <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                    <p>{{ $details['name'] }}</p>
-                                    <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-                    
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                            <a href="{{ url('/products/cart') }}" class="btn btn-primary btn-block">View all</a>
-                        </div>
-                    </div>
-                
-                </div>
-           </li>
-        </div>
+
+
             <!-- Authentication Links -->
-            @guest
-            @if (Route::has('login'))
-            <div class="li">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-            </div>
-            @endif
+              @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
 
-            @if (Route::has('register'))
-            <div class="li">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-            </div>
-            @endif
-            @else
-            <div class="li">
-            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                    {{ Auth::user()->name }}
-                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-        </div>
-            @endguest
-         
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
 
 
 
-                </div>
+
 
         </nav>
 

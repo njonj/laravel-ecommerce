@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,10 +24,12 @@ class AdminController extends Controller
         // $id = User::find($id);
 
         $user = DB::select('select * from users');
-// dd($user);
+        $seller = DB::select('select * from sellers');
+        // dd($user);
 
         return view('admin.index', [
-            'user' => $user
+            'user' => $user,
+            'seller' => $seller
         ]);
     }
 
@@ -67,5 +70,14 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('login_from')->with('error', 'Admin Registered Successful');
+    }
+    public function destroy($id){
+        $id = User::find($id);
+        $id = Seller::find($id);
+        $id->delete();
+
+
+
+        return redirect('/admin/dashboard');
     }
 }

@@ -1,4 +1,5 @@
-<x-guest-layout>
+@extends('layouts.app')
+@section('contentS')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -21,9 +22,9 @@
                 @csrf
 
                 <div>
-                    <x-button>
+                    <x-primary-button>
                         {{ __('Resend Verification Email') }}
-                    </x-button>
+                    </x-primary-button>
                 </div>
             </form>
 
@@ -36,4 +37,4 @@
             </form>
         </div>
     </x-auth-card>
-</x-guest-layout>
+@endsection

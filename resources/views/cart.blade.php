@@ -1,76 +1,95 @@
 @extends('layouts.app')
+@section('content') 
 
-@section('content')
+<script>
+function Cal() {
+	
+	var prices = document.getElementsByName('price[]');
+	
+	var total=0;
+	
+	var cboxes = document.getElementsByName('item[]');    
+	var len = cboxes.length;	    
+	for (var i=0; i<len; i++) {        
+		if(cboxes[i].checked){	//calculate if checked		
+			subtotal=parseFloat(prices[i].value)+parseFloat(total);	}					
+	}
+	
+	
+	total=subtotal+total;
+	
+	document.getElementById('amount').value=total.toFixed(2);
+}
+</script>
+
 <div class="container">
-    <div class="row">
+	    <div class="row">
 
- 
-<form action="{{ route('create.order') }}" method="post">
-    @csrf
-<table id="cart" class="table table-hover table-condensed">
-    <thead>
-        <tr>
-            <th style="width: 50%">Product</th>
-            <th style="width: 10%">Price</th>
-            <th style="width: 8%">Quantity</th>
-            <th style="width: 22%" class="text-center">Subtotal</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php $total = 0 ?>
+		<form   method="post" action="" >
+			{{ csrf_field() }}
+		    <table class="table table-hover table-striped">
+				
+		        <thead>
+		        <tr class="thead-dark">
+		            <th>ID</th>
+                    <th>Image</th>
+		            <th>Name</th>
+                   <th>Quantity</th>
+		            <th>Amount</th>
+                    <th>Action</th>
+		        </tr>
+		    </thead>
+		        <tbody>	
+                    @if (session('cart'))
+                @foreach($carts as $key => $cart)
+		            <tr>
+		                <td><input type="checkbox" name="item[]" value="{{$cart['id']}}" onchange="Cal()" /></td>
+                        <td><img src="{{ asset('sales/') }}/{{$cart->image}}" alt="" width="50"></td>
+		                <td style="max-width:300px">
+		                    <h6>{{$cart->name}}</h6>		                   
+		                </td>
+		                
 
-        @if (session('cart'))
-        @foreach (session('cart') as $id => $details)
+                        <td>{{$cart->qty}}</td>
+						@php
+							$subtotal = $cart->qty*$cart->price;
+						@endphp
 
-        <?php $total += $details['price'] * $details['quantity'] ?>
-            
-        
-        <tr>
-            <td data-th="Product">
-                <div class="row">
-                <div class="col-sm-3 hidden-xs">
-                    <img src="{{ $details['image'] }}" class="img-responsive">
-                </div>
-                    <div class="col-sm-9">
-                    <h4 class="nomargin">{{ $details['name'] }}</h4>
-                </div>
-                </div>
-            </td>
-            <td data-th="Price">{{ $details['price'] }}</td>
-            <td data-th="Quantity"><input type="number" class="form-control quantity" value="{{ $details['quantity'] }}"></td>
-<td data-th="Subtotal" class="text-center">Kshs {{ $details['price'] * $details['quantity']}}</td>
-<td class="actions" data-th="">
-    <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="bi bi-123"></i></button>
-    <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="bi bi-trash3"></i></button>
-</td>
-        </tr>
-        @endforeach
-            
-        @endif
-    </tbody>
- 
-    <tfoot>
-        <tr class="visible-xs">
-            <td class="text-center"><strong>Total: Kshs {{ $total }}</strong></td>
-        </tr>
-        <tr><a href="{{ url('/products') }}" class="btn btn-warning"><i class="bi bi-caret-left-fill"></i>Continue Shopping</a>
-<td colspan="2" class="hidden-xs"></td>
-<td class="hidden-xs text-center"><strong>Total: </strong></td>
-        </tr>
+                        <td>{{$subtotal}}</td>
+						<input type="hidden" value="{{$subtotal}}" name="price[]" id="price[]"/>
 
-    </tfoot>
-     <form action="{{route('book.pay', ['cart_total'=>$subTotal, 'user_id'=>auth()->id()])}}" method="POST">
-                    @csrf
-                <button type="submit" class="btn btn-success">CHECKOUT with M-PESA</button>
-                </form>
-</table>
-</form>
-</div>
-</div>
+		                <td>
+		                    <a href="" class="btn btn-warning"><i class="fas fa-edit">Edit</i></a> | 
+		                    <a href="" class="btn btn-danger" onclick="return confirm('Confirm Delete?')">Delete</a>
+		                </td>
+		            </tr> 
+                @endforeach
+                @endif
+				 
+				<tr class="thead-dark">
+		        <td>&nbsp;</td>
+                <td>&nbsp;</td>
+		        <td>&nbsp;</td>  
+                <td>&nbsp;</td>                 
+		        <td>Total</td>
+		        <td><input type="text" name="amount" id="amount" value=""></td>
+                <td><input type="submit" name="checkout" value="Checkout"></td>
+		    </tr>
+		</form>	
+				
+		        </tbody>
+			
+		    </table>
+		
+            {{-- <tr><a href="{{ url('/products') }}" class="btn btn-warning"><i class="bi bi-caret-left-fill"></i>Continue Shopping</a> --}}
+                {{-- <td colspan="2" class="hidden-xs"></td>	 --}}
+
+	</div>
+    </div>
 @endsection
 
 @section('scripts')
+
     <script type="text/javascript">
     $(".update-cart").click(function (e) { 
         e.preventDefault();

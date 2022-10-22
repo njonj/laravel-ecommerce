@@ -8,8 +8,17 @@
 <div class="col-md-7">
 
 </div>
+
 <!-- Carousel -->
 <div class="col-md-7 pt-4 pt-md-0">
+    {{-- <div class="sidebar">
+    <nav class="nav nav-pills flex-column justify-content-around" id="nav">
+        <a class="nav-link active" aria-current="page" href="#">Active</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </nav>
+    </div> --}}
     <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
         <!-- Indicators/dots -->

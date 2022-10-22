@@ -1,4 +1,7 @@
-<x-guest-layout>
+@extends('layouts.app')
+@section('content')
+
+
     <x-auth-card>
         {{-- <x-slot name="logo">
             <a href="/">
@@ -9,28 +12,28 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-input-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus aria-placeholder="Enter Email"/>
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="current-password"
-                                aria-placeholder="Enter Password" />
+                                required autocomplete="current-password" />
+
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
             <!-- Remember Me -->
@@ -48,15 +51,11 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-primary-button class="ml-3">
                     {{ __('Log in') }}
-                </x-button>
+                </x-primary-button>
             </div>
-
         </form>
-        <br>
-        <div class="footer-a">
-            <p>Copyright &copy; 2022  @Njonjoh  All rights reserved.</p>
-         </div>
     </x-auth-card>
-</x-guest-layout>
+
+    @endsection

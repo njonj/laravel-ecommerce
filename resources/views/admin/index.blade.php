@@ -2,55 +2,13 @@
 
 @section('admin')
 <div class="middle_content_wrapper">
-    <!-- counter_area -->
-    <section class="counter_area">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                         <span><i class="fa fa-code"></i></span>
-                          <h2 class="timer count-number" data-to="300" data-speed="1500"></h2>
-                    </div>
 
-                   <p class="count-text ">SomeText GoesHere</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                        <span><i class="fa fa-coffee"></i></span>
-                         <h2 class="timer count-number" data-to="1700" data-speed="1500"></h2>
-                    </div>
-                    <p class="count-text ">SomeText GoesHere</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                        <span><i class="fas fa-user"></i></span>
-                         <h2 class="timer count-number" data-to="11900" data-speed="1500"></h2>
-                    </div>
-                    <p class="count-text ">SomeText GoesHere</p>
-
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                        <span><i class="fa fa-bug"></i></span>
-                         <h2 class="timer count-number" data-to="157" data-speed="1500"></h2>
-                    </div>
-                     <p class="count-text ">SomeText GoesHere</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/ counter_area -->
     <!-- table area -->
     <section class="table_area">
         <div class="panel">
             <div class="panel_header">
-                <div class="panel_title"><span>FooTable with row toggler, sorting, filter and pagination</span></div>
+
+                <div class="panel_title"><span> <strong>Customers</strong> </span></div>
             </div>
             <div class="panel_body">
                 {{-- @foreach ($user as $item) --}}
@@ -66,7 +24,7 @@
                               <th>Email Address</th>
                               <th>Mobile Number</th>
                               <th>Actions</th>
-                              
+
                           </tr>
                       </thead>
 
@@ -77,15 +35,63 @@
                               <td>{{ $item->name }}</td>
                               <td>{{ $item->email }}</td>
                               <td>{{ $item->phone_no }}</td>
-                              {{-- <td><div class="d-flex">
-                                <a href="{{ route ('products.edit', $product->products_id) }}" class="btn btn-primary m-1">Edit</a>
-            
-                                <form action="{{ route('products.destroy', $product->products_id ) }}" method="POST">
+                              <td>
+                                <div class="d-flex">
+                                <a href="{{ route ('products.edit', $item->id) }}" class="btn btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
+                                <form action="{{ route('admin.destroy', $item->id ) }}" method="POST">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button class="btn btn-danger m-1">Delete</button>
+                                    <button class="btn btn-danger m-1"><i class="bi bi-trash3"></i></button>
                                 </form>
-                            </div></td> --}}
+                                </div>
+                              </td>
+                          </tr>
+                      </tbody>
+                         @endforeach
+                    </table>
+                </div>
+            </div>
+        </div> <!-- /table -->
+        <div class="panel">
+            <div class="panel_header">
+
+                <div class="panel_title"><span> <strong>Sellers</strong> </span></div>
+            </div>
+            <div class="panel_body">
+                {{-- @foreach ($user as $item) --}}
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+
+                        <thead>
+                          <tr>
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Email Address</th>
+                              <th>Mobile Number</th>
+                              <th>Actions</th>
+
+                          </tr>
+                      </thead>
+
+                      <tbody>
+                        @foreach ($seller as $item)
+                          <tr>
+                              <td>{{  $item->id }}</td>
+                              <td>{{ $item->name }}</td>
+                              <td>{{ $item->email }}</td>
+                              <td>{{ $item->phone_no }}</td>
+                              <td>
+                                <div class="d-flex">
+                                <a href="{{ route ('products.edit', $item->id) }}" class="btn btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
+                                <form action="{{ route('admin.destroy', $item->id ) }}" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button class="btn btn-danger m-1"><i class="bi bi-trash3"></i></button>
+                                </form>
+                                </div>
+                              </td>
                           </tr>
                       </tbody>
                          @endforeach

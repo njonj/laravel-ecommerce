@@ -32,7 +32,7 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->unsignedBigInteger('categoriesId');
             $table->foreign('categoriesId')->references('id')->on('categories')->onDelete('cascade');
-                    });
+        });
     }
 
     /**

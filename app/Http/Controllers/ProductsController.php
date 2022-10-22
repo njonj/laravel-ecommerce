@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
-use App\Models\Vendors;
+use App\Models\Cart;
+use App\Models\User;
 use App\Models\Categories;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -32,16 +32,9 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Products $products)
+    public function create(Products $products)
     {
-        $check = $request->all();
-        // if everything is correct directed to the admin dashboard
-        if (Auth::guard('seller')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return redirect()->route('products.create')->with('error', 'Admin Login Successful');
-        } else {
-            // when wrong credentials u return to admin.login
-            return back()->with('error', 'Invalid Email or Password');
-        }
+
         $products = Products::all();
 
         return view('products.create', [
@@ -88,7 +81,7 @@ class ProductsController extends Controller
                 'products_quantity' => $quantity,
                 'products_description' => $description,
                 'products_image' => $imageName,
-                'categories_id' => $categories,
+                'categoriesId' => $categories,
 
 
 
@@ -96,7 +89,7 @@ class ProductsController extends Controller
                 // 'category' => $category
             ]);
 
-            $categories = DB::select('select categories_id from categories');
+            $categories = DB::select('select id from categories');
 
 
 
@@ -181,7 +174,7 @@ class ProductsController extends Controller
                 'products_quantity' => $quantity,
                 'products_description' => $description,
                 'products_image' => $imageName,
-                'categories_id' => $categories,
+                'categoriesId' => $categories,
 
 
 
@@ -217,68 +210,76 @@ class ProductsController extends Controller
         return redirect('/products');
     }
 
-   
-    public function cart(Products $products_id)
-    {
-        $products = Products::find($products_id);
-        return view('cart');
-    }
-    public function addToCart($id)
-    {
-        $product = Products::find($id);
 
-        if (!$product) {
-            abort(404);
-        }
+    // public function cart(Products $products_id)
+    // {
+    //     $products = Products::find($products_id);
+    //     return view('cart');
+    // }
+    // public function addToCart($id)
+    // {
+    //     $r = request();
+    //     $product = Products::find($id);
 
-        $cart = session()->get('cart');
-        // if cart is empty then this is the first product
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    'name' => $product->products_name,
-                    'quantity' => 1,
-                    'price' => $product->products_price,
-                    'image' => $product->products_image,
-                ]
-            ];
+    //     if (!$product) {
+    //         abort(404);
+    //     }
 
-            session()->put('cart', $cart);
+    //     $carts = session()->get('cart');
+    //     // if cart is empty then this is the first product
+    //     if (!$carts) {
+    //         $carts = [
+    //             $id => [
+    //                 $name = $product->products_name,
+    //                 'quantity' => 1,
+    //                 $price = $product->products_price,
+    //                 $image = $product->products_image,
+    //             ]
+    //         ];
 
-            return redirect()->back()->with('error', 'Product added to cart successfully');
-        }
+    //         session()->put('cart', $carts);
+    //     }
 
-        // if item not exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            'name' => $product->products_name,
-            'quantity' => 1,
-            'price' => $product->products_price,
-            'image' => $product->products_image,
-        ];
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
 
-    public function upgrade(Request $request)
-    {
-        if ($request->id and $request->quantity) {
-            $cart = session()->get('cart');
-            $cart[$request->id]['quantity'] = $request->quantity;
 
-            session()->put('cart', $cart);
-            session()->flash('error', 'Cart updated successfully');
-        }
-    }
 
-    public function remove(Request $request)
-    {
-        if ($request->id) {
-            $cart = session()->get('cart');
 
-            if (isset($cart[$request->id]));
-            unset($cart[$request->id]);
-            session()->put('cart', $cart);
-        }
-        session()->flash('error', 'Product removed successfully');
-    }
+
+    //     return redirect()->back()->with('error', 'Product added to cart successfully');
+
+
+    //     $carts = Cart::create([
+    //         'productId' => $r->products_id,
+    //         'orderId' => "",
+
+    //         'quantity' => 1,
+
+    //         'userId' => Auth::guard('web'),
+    //     ]);
+
+    //     $carts->save();
+    // }
+
+    // public function upgrade(Request $request)
+    // {
+    //     if ($request->id and $request->quantity) {
+    //         $cart = session()->get('cart');
+    //         $cart[$request->id]['quantity'] = $request->quantity;
+
+    //         session()->put('cart', $cart);
+    //         session()->flash('error', 'Cart updated successfully');
+    //     }
+    // }
+
+    // public function remove(Request $request)
+    // {
+    //     if ($request->id) {
+    //         $cart = session()->get('cart');
+
+    //         if (isset($cart[$request->id]));
+    //         unset($cart[$request->id]);
+    //         session()->put('cart', $cart);
+    //     }
+    //     session()->flash('error', 'Product removed successfully');
+    // }
 }

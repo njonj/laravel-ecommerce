@@ -8,6 +8,7 @@
         <link rel="icon" href="{{ asset('panel/assets/images/favicon.png') }}" >
         <!--Page title-->
         <title>Admin E-Sales</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <!--bootstrap-->
         <link rel="stylesheet" href="{{ asset('panel/assets/css/bootstrap.min.css') }}">
         <!--font awesome-->
@@ -34,8 +35,8 @@
                 <!-- logo -->
                 <div class="sidebar_logo">
                     <a href="index.html">
-  <img src="panel/assets/images/logo.png" alt="" class="img-fluid logo1">
-   <img src="panel/assets/images/logo_small.png" alt="" class="img-fluid logo2">
+  <img src="{{ asset('panel/assets/images/logo_small2.png') }}" alt="" class="img-fluid logo1">
+   <img src="{{ asset('panel/assets/images/logo_small.png') }}" alt="" class="img-fluid logo2">
                     </a>
                 </div>
                 <div class="sidebar_btn">

@@ -30,19 +30,14 @@ class SellerController extends Controller
         return view('seller.seller_login');
     }
 
-    public function sellerdashboard()
-    {
-        return view('seller.index');
-    }
-
     public function sellerlogin(Request $request)
     {
         // dd($request->all());
 
         $check = $request->all();
-        // if everything is correct directed to the seller dashboard
+        // if everything is correct directed to the admin dashboard
         if (Auth::guard('seller')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return view('/products/create')->with('error', 'Seller Login Successful');
+            return redirect()->route('seller.dashboard')->with('error', 'Seller Login Successful');
         } else {
             // when wrong credentials u return to admin.login
             return back()->with('error', 'Invalid Email or Password');

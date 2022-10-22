@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('products.index');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 
@@ -34,6 +33,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/logout', 'App\Http\Controllers\AdminController@adminlogout')->name('admin.logout')->middleware('admin');
     Route::get('/register', 'App\Http\Controllers\AdminController@adminregister')->name('admin.register');
     Route::post('/register/owner', 'App\Http\Controllers\AdminController@adminregistercreate')->name('admin.register.create');
+    Route::delete('destroy', 'App\Http\Controllers\AdminController@destroy')->name('admin.destroy');
 });
 /*--------------- End of Admin Route------------*/
 
@@ -51,14 +51,19 @@ Route::prefix('seller')->group(function () {
 
 //products
 Route::resource('products', ProductsController::class);
-Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->middleware('seller');
-Route::get('cart', 'App\Http\Controllers\ProductsController@cart')->middleware('auth');
-Route::get('add-to-cart/{id}', 'App\Http\Controllers\ProductsController@addToCart')->middleware('auth');
-Route::patch('update-cart', 'App\Http\Controllers\ProductsController@upgrade')->middleware('auth');
-Route::delete('remove-from-cart', 'App\Http\Controllers\ProductsController@remove')->middleware('auth');
-// categories
+// Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->name('products.create')->middleware('seller');
+
 Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phones');
 Route::get('/categories/laptops', 'App\Http\Controllers\CategoriesController@laptops');
 Route::get('/categories/electronics', 'App\Http\Controllers\CategoriesController@electronics');
+
+// cart
+
+Route::post('add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('add-to-cart')->middleware('auth');
+Route::get('cart', 'App\Http\Controllers\CartController@cart')->name('cart')->middleware('auth');
+Route::get('add-to-cart', 'App\Http\Controllers\CartController@addToCart')->middleware('auth');
+Route::patch('update-cart', 'App\Http\Controllers\ProductsController@upgrade')->middleware('auth');
+Route::delete('remove-from-cart', 'App\Http\Controllers\ProductsController@remove')->middleware('auth');
+
 
 Route::post('/create/order', 'App\Http\Controllers\OrderController@add');

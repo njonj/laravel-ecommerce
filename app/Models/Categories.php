@@ -9,10 +9,10 @@ class Categories extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'categories_id';
-    protected $fillable = ['categories_id','categories_name','categories_description'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['id','categories_name'];
 
     public function products(){
-        return $this->belongsToMany(Products::class, 'foreign_key');
+        return $this->hasMany(Products::class, 'foreign_key');
     }
 }

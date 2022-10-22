@@ -13,30 +13,22 @@
                         <img src="{{ asset('/sales/'.$product->products_image) }}" class="card-img-top img-fluid" alt="..." height="200px" width="200px">
                     </a>
                 </div>
+            <form action="{{ route('add-to-cart') }}" method="post">
+                @csrf
         <div class="card-body">
             <h3>
                 <span class="text-primary">{{ $product->products_name }}</span>
                </h3>
 
                     <h5 class="lead">Kshs {{ $product->products_price }} </h5>
-
-                    <p class="btn-holder"><a href="{{ url('add-to-cart/' .$product->products_id) }}" class="btn btn-warning btn-block text-center" role="button">  <i class="bi bi-cart4"></i> Add to cart</a> </p>
-
-            {{-- <div class="product-actions" style="display: flex; align-items: center; justify-content: center"> --}}
-
-                        {{-- <a href="{{ route('cart.edit', $product->products_id) }}" > --}}
-                            {{-- <button  type="button" class="add-to-cart-btn btn btn-warning btn-block float-start text-center">
-                                <i class="bi bi-cart4"></i> Add to Cart
-                            </button> --}}
-                            {{-- </a> --}}
+                    <div style="height: 100px">Quantity <input type="number" name="quantity" id="qty" value="1" min="1" max="10"> Available stock: {{$product->products_quantity}}
+                    </div>
+                    {{-- <button type="submit" style="float:right" class="btn btn-danger btn-xs">Add To Cart</button> --}}
+                    <p class="btn-holder"><a href="{{ url('add-to-cart')}}" class="btn btn-warning btn-block text-center" role="button">  <i class="bi bi-cart4"></i> Add to cart</a> </p>
 
 
-{{--
-                    <div class="progress" style="width: 25%">
-                    <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{ $product->products_quantity }}</div>
-                  </div> --}}
-            {{-- </div> --}}
         </div>
+    </form>
 
     </div>
 </div>

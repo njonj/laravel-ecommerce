@@ -14,7 +14,7 @@ class Products extends Model
     protected $table = 'products';
 
     protected $primaryKey = 'products_id';
-    protected $fillable = ["categories_id", "products_name", "products_price", "products_quantity","products_description", "products_image", "products_category"];
+    protected $fillable = ["categoriesId", "products_name", "products_price", "products_quantity","products_description", "products_image", "products_category"];
 
     //   public function presentPrice(){
     //       return money_format('$%i', $this->price / 100) ;
@@ -23,7 +23,7 @@ class Products extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Categories::class, 'foreign_key', 'categories_name');
+        return $this->belongsTo(Categories::class, 'foreign_key', 'categories_name');
     }
 
     // public function orders(){
@@ -35,11 +35,11 @@ class Products extends Model
         return $this->hasMany(Orders_details::class);
     }
 
-    //
-    public function orders()
-    {
-        return $this->belongsToMany(Orders::class);
-    }
+    
+// public function orders()
+//     {
+//         return $this->belongsToMany(Orders::class);
+//     }
 
     public static function getproducts()
     {
