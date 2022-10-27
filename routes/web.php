@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function () {
 Route::prefix('seller')->group(function () {
     Route::get('/login', 'App\Http\Controllers\SellerController@sellerindex')->name('seller_login_from');
     Route::post('/login/owner', 'App\Http\Controllers\SellerController@sellerlogin')->name('seller.login');
-    Route::get('/dashboard', 'App\Http\Controllers\SellerController@sellerdashboard')->name('seller.dashboard')->middleware('seller');
+    Route::get('/dashboard', 'App\Http\Controllers\SellerController@show')->name('seller.dashboard')->middleware('seller');
     Route::get('/logout', 'App\Http\Controllers\SellerController@sellerlogout')->name('seller.logout')->middleware('seller');
     Route::get('/register', 'App\Http\Controllers\SellerController@sellerregister')->name('seller.register');
     Route::post('/register/owner', 'App\Http\Controllers\SellerController@sellerregistercreate')->name('seller.register.create');
@@ -51,7 +51,7 @@ Route::prefix('seller')->group(function () {
 
 //products
 Route::resource('products', ProductsController::class);
-// Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->name('products.create')->middleware('seller');
+Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->name('products.create')->middleware('seller');
 
 Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phones');
 Route::get('/categories/laptops', 'App\Http\Controllers\CategoriesController@laptops');

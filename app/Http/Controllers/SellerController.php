@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\DB;
 
 class SellerController extends Controller
 {
-    public function show(Products $products_id)
+    public function show()
     {
 
         // $id = User::find($id);
 
-        $product = DB::select('select * from products');
+        $products = DB::select('select * from products');
         // dd($user);
 
         return view('seller.index', [
-            'products' => $product
+            'products' => $products
         ]);
     }
     public function sellerindex()
@@ -35,9 +35,10 @@ class SellerController extends Controller
         // dd($request->all());
 
         $check = $request->all();
+
         // if everything is correct directed to the admin dashboard
         if (Auth::guard('seller')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return redirect()->route('seller.dashboard')->with('error', 'Seller Login Successful');
+            return redirect()->route('products.create')->with('error', 'Admin Login Successful');
         } else {
             // when wrong credentials u return to admin.login
             return back()->with('error', 'Invalid Email or Password');

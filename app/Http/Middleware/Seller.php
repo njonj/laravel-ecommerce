@@ -18,8 +18,12 @@ class Seller
     public function handle(Request $request, Closure $next)
     {
 
-        if(!Auth::guard('seller')->check()){
-            return redirect()->route('seller_login_from')->with('error','Please Login First');
+        if (!Auth::guard('seller')->check()) {
+            return redirect()->route('seller_login_from')->with('error', 'Please Login First');
+        }
+
+
+
+        return $next($request);
     }
-}
 }

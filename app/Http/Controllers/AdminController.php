@@ -25,11 +25,13 @@ class AdminController extends Controller
 
         $user = DB::select('select * from users');
         $seller = DB::select('select * from sellers');
+        $products = DB::select('select * from products');
         // dd($user);
 
         return view('admin.index', [
             'user' => $user,
-            'seller' => $seller
+            'seller' => $seller,
+            'products' => $products
         ]);
     }
 

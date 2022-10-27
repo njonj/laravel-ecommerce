@@ -32,11 +32,11 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Products $products)
+    public function create(Request $request, Products $products)
     {
 
         $products = Products::all();
-
+        
         return view('products.create', [
             'products' => $products
         ]);
@@ -146,6 +146,8 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products_id)
     {
+
+        // dd(test);
         // Products::where('products_id',$products_id)->update($request->except([
         //     '_token','_method']));
 

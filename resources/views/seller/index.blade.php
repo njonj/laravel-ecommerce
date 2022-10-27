@@ -1,100 +1,59 @@
 @extends('seller.seller_master')
 
 @section('seller')
-<div class="middle_content_wrapper">
-    <!-- counter_area -->
-    <section class="counter_area">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                         <span><i class="fa fa-code"></i></span>
-                          <h2 class="timer count-number" data-to="300" data-speed="1500"></h2>
-                    </div>
-
-                   <p class="count-text ">SomeText GoesHere</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                        <span><i class="fa fa-coffee"></i></span>
-                         <h2 class="timer count-number" data-to="1700" data-speed="1500"></h2>
-                    </div>
-                    <p class="count-text ">SomeText GoesHere</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                        <span><i class="fas fa-user"></i></span>
-                         <h2 class="timer count-number" data-to="11900" data-speed="1500"></h2>
-                    </div>
-                    <p class="count-text ">SomeText GoesHere</p>
-
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="counter">
-                    <div class="counter_item">
-                        <span><i class="fa fa-bug"></i></span>
-                         <h2 class="timer count-number" data-to="157" data-speed="1500"></h2>
-                    </div>
-                     <p class="count-text ">SomeText GoesHere</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/ counter_area -->
+<div class="container">
     <!-- table area -->
     <section class="table_area">
-        <div class="panel">
-            <div class="panel_header">
-                <div class="panel_title"><span>FooTable with row toggler, sorting, filter and pagination</span></div>
-            </div>
-            <div class="panel_body">
-                {{-- @foreach ($user as $item) --}}
+       <!-- products -->
+       <div class="panel">
+        <div class="panel_header">
+
+            <div class="panel_title"><span> <strong>Products</strong> </span></div>
+        </div>
+        <div class="panel_body">
+            {{-- @foreach ($user as $item) --}}
 
 
-                <div class="table-responsive">
-                    <table class="table table-bordered">
+            <div class="table-responsive">
+                <table class="table table-bordered">
 
-                        <thead>
-                          <tr>
-                              
-                              <th>Name</th>
-                              <th>Image</th>
-                              <th>Quantity</th>
-                              <th>Price</th>
-                              <th data-hide="all">Actions</th>
-                          </tr>
-                      </thead>
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Quantity</th>
+                          <th>Actions</th>
 
-                      <tbody>
-                        @foreach ($products as $item)
-                          <tr>
-                              <td>{{  $item->products_name }}</td>
-                              <td>{{ $item->products_image }}</td>
-                              <td>{{ $item->products_quantity }}</td>
-                              <td>{{ $item->products_price }}</td>
-                              <td>
-                              <div class="d-flex">
-                                <a href="{{ route ('products.edit', $product->products_id) }}" class="btn btn-primary m-1">Edit</a>
-            
-                                <form action="{{ route('products.destroy', $product->products_id ) }}" method="POST">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button class="btn btn-danger m-1">Delete</button>
-                                </form>
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                    @foreach ($products as $item)
+                      <tr>
+                          <td>{{  $item->products_id }}</td>
+                          <td>{{ $item->products_name }}</td>
+                          <td>{{ $item->products_price }}</td>
+                          <td>{{ $item->products_quantity }}</td>
+                          <td>
+                            <div class="d-flex">
+                            <a href="{{ route ('products.edit', $item->products_id) }}" class="btn btn-primary m-1"><i class="bi bi-pencil-square"></i></a>
+                            <form action="{{ route('products.destroy', $item->products_id ) }}" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button class="btn btn-danger m-1"><i class="bi bi-trash3"></i></button>
+                            </form>
                             </div>
-                        </td>
-                          </tr>
-                      </tbody>
-                         @endforeach
-                    </table>
-                </div>
+                          </td>
+                      </tr>
+                  </tbody>
+                     @endforeach
+                </table>
             </div>
-        </div> <!-- /table -->
+        </div>
+    </div> <!-- /table -->
+<!-- /products -->
+
         <!-- chart area -->
         <div class="row">
             <div class="col-lg-8">

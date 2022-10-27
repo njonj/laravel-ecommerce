@@ -9,6 +9,7 @@
         <!--Page title-->
         <title>Seller E-Sales</title>
         <!--bootstrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{{ asset('panel/assets/css/bootstrap.min.css') }}">
         <!--font awesome-->
         <link rel="stylesheet" href="{{ asset('panel/assets/css/all.min.css') }}">

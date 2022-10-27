@@ -75,7 +75,7 @@
         <br>
         <div class="form-group">
           <label for="description"><strong>Description:</strong></label>
-            <textarea class="form-control" style="height:150px" name="products_description" placeholder="Describe the specifications of the product">{{ $products->products_description }}</textarea>
+            <textarea class="form-control" style="height:150px" name="products_description" value="{{ $products->products_description }}"></textarea>
         </div>
         <br>
         <div class=" btn flex justify-center">
