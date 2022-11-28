@@ -22,37 +22,30 @@ class CartController extends Controller
     public function addToCart()
     {
         $r = request();
-        // if ($r->session()->has('user')) {
-        //     $carts = new Cart;
-        //     $carts->products_id = $r->products_id;
-        //     $carts->quantity = $r->quantity;
-        //     $carts->orderId = "";
-        //     $carts->save();
-        //     return redirect('cart');
-        // } else {
-        //     return redirect('/login');
-        // }
+        $product = Products::where('products_id')->first();
+        // return $product;
+        if (empty($product)) {
+            Session::flash('error', 'Invalid Product');
+            return back();
+        }
 
 
-        $products = DB::select('select products_id from products');
+        // $products = DB::select('select products_id from products');
         // return $products;
         $user = DB::select('select id from users');
 
-        $userId = Auth::user();
+
         // return ["userId" =>$userId, "user"=>$user];
 
-
-
-        // ["orderId" ,"userId", "quantity","productsId"]
-        $carts = Cart::create([
-
-            'quantity' => $r->quantity,
-            'orderId' => '',
-            'productsId' => $products,
-            'userId' => $userId->id,
-
-        ]);
+        $carts = new Cart;
+        $carts->quantity = $r->quantity;
+        $carts->orderId = '';
+        $carts->productsId = $product->products_id;
+        $carts->userId = auth()->user()->id;
+        return $carts;
         $carts->save();
+
+
         Session::flash('success', "Product add Successful!");
         return redirect()->route('cart');
     }

@@ -5,9 +5,7 @@
 
 <div class="container mt-3">
 <div class="row">
-<div class="col-md-7">
 
-</div>
 
 <!--- Carousel--->
 <div class="col-md-7 pt-4 pt-md-0">
@@ -223,4 +221,6 @@
 </div>
 <hr>
 @endsection
+
+
 

@@ -36,7 +36,7 @@ class ProductsController extends Controller
     {
 
         $products = Products::all();
-        
+
         return view('products.create', [
             'products' => $products
         ]);
@@ -69,6 +69,7 @@ class ProductsController extends Controller
             $quantity = $request->input('products_quantity');
             $description = $request->input('products_description');
             $categories = $request->get('categories_name');
+            $subcategories = $request->get('name');
 
 
             //     // Save the file locally in the storage/public/ folder under a new folder named /product
@@ -82,6 +83,7 @@ class ProductsController extends Controller
                 'products_description' => $description,
                 'products_image' => $imageName,
                 'categoriesId' => $categories,
+                'subCategoriesId' => $subcategories,
 
 
 
@@ -90,6 +92,7 @@ class ProductsController extends Controller
             ]);
 
             $categories = DB::select('select id from categories');
+            $subcategories = DB::select('select id from subcategories');
 
 
 

@@ -15,4 +15,8 @@ class Categories extends Model
     public function products(){
         return $this->hasMany(Products::class, 'foreign_key');
     }
+
+    public function subcategories(){
+        return $this->hasMany(SubCategories::class,'foreign_key' );
+    }
 }

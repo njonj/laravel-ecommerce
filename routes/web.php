@@ -57,6 +57,16 @@ Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phon
 Route::get('/categories/laptops', 'App\Http\Controllers\CategoriesController@laptops');
 Route::get('/categories/electronics', 'App\Http\Controllers\CategoriesController@electronics');
 
+
+// subcategories
+Route::get('/subcategories/huawei', 'App\Http\Controllers\SubCategoriesController@huawei');
+Route::get('/subcategories/nokia', 'App\Http\Controllers\SubCategoriesController@nokia');
+Route::get('/subcategories/samsung', 'App\Http\Controllers\SubCategoriesController@samsung');
+Route::get('/subcategories/oppo', 'App\Http\Controllers\SubCategoriesController@oppo');
+Route::get('/subcategories/xiaomi', 'App\Http\Controllers\SubCategoriesController@xiaomi');
+
+
+
 // cart
 
 Route::post('add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('add-to-cart')->middleware('auth');

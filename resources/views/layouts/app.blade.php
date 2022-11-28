@@ -387,17 +387,18 @@ div.carousel {
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav mr-auto">
 
                     </ul>
-
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Right Side Of Navbar -->
-
-
-            <!-- Authentication Links -->
-              @guest
+                    <ul class="navbar-nav mr-auto">
+                        <!-- Authentication Links -->
+                        @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
@@ -408,29 +409,25 @@ div.carousel {
                             @endif
                         @else
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-dark">
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+          	document.getElementById('logout-form').submit();">
+                 {{ __('Logout') }} </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
+
+          </div>
+        </li>
                         @endguest
-
-
-
-
-
+                    </ul>
+                </div>
         </nav>
 
         <main class="py-4">
@@ -449,31 +446,12 @@ div.carousel {
 
 
 
-<button  id="live-engage-btn" class="button button--rounded-top position-static hide"  data-bi-an="chat" data-bi-id="expand-chat" data-bi-bhvr="16" data-bi-chtid="azure chat 1" data-bi-chtnm="live person chat" data-lp-event="click" >
-    <span><i class="bi bi-chat-left-dots-fill"></i> Chat with Sales</span>
-</button>
 
 
 
 
-    <div id="lp-iframe-container" class="lpChatiFrameContainer" style="display: none; height: 564px; min-width: 400px; max-width: 400px;" aria-hidden="true">
 
-        <template id="lp-iframe-template">
-            <iframe title="Chat with Sales" src='https://webchat.botframework.com/embed/suppor?s=JYz2Sgy83XQ.qDDwJSI9ZzpG_laM9ibv3g8x4JprrehS1ruwwuWqwu8' style='min-width: 200px; width: 100%; min-height: 550px; ' id="iFrame" allow="camera;microphone" data-lpcurl="https://azure.microsoft.com/en-us/products/bot-services/" data-domainurl="https://publisher.liveperson.net"></iframe>
-            <script defer="" src="//azurecomcdn.azureedge.net/cvt-c291416aef9d1a5aef34e35ef15bb1b2c98a88abf7d589f5d3cb68843cf57a2a/scripts/Acom/Components/LivePersonChat-iframe.js" crossorigin="anonymous" onerror="cdnfallback()"></script>;
-        </template>
-        <script>
-            (function () {
-                function loadLpcIframe() {
-                    const template = document.getElementById('lp-iframe-template');
-                    var lpIframeContainer = document.getElementById('lp-iframe-container');
-                    lpIframeContainer.appendChild(template.content.cloneNode(true));
-                }
-                window.addEventListener('load', loadLpcIframe);
-            })();
-        </script>
 
-            </div>
 
 
 

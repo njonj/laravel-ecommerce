@@ -58,6 +58,17 @@
         </div>
         <br>
         <div class="form-group">
+            @php( $subcategories = \App\Models\SubCategories::all() )
+
+            <label for="subcategory"> <strong> SubCategories: </strong></label>
+        <select class="form-control" name="name" id="subcategories_name">
+            @foreach ( $subcategories as $subcategory )
+              <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <br>
+        <div class="form-group">
             <label for="products_image"><strong>Select a Product's Image: </strong></label>
             <input type="file" id="products_image" name="image">
         </div>
