@@ -30,6 +30,9 @@ $ (document).ready(function () {
     });
 });
 
+// $('.ui.sidebar')
+//   .sidebar('toggle')
+// ;
 // $(document).ready(function () {
 //     cartload();
 // });

@@ -16,7 +16,7 @@
              <div class="product-details col-md-5 offset-md-1">
                 <h2 class="lead" style="margin-top:1em"><bold>{{ $product->products_name }}</bold></h2>
     <h6 class="lead"><strong>Kshs {{  $product->products_price }}</strong></h6>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum, non?</p>
+    
     <div>
         @if ($product->products_quantity > 0)
            <label for="badge ba-success">In Stock</label>
@@ -28,11 +28,20 @@
     <div class="row">
 
 
-    <div class="col md-6 ">
-        <p class="btn-holder"><a href="{{ url('add-to-cart/' .$product->products_id) }}" class="btn btn-warning btn-block text-center" role="button">  <i class="bi bi-cart4"></i> Add to cart</a> </p>
-    </div>
+        <form action="{{ route('addcart', $product->products_id) }}" method="post" enctype="multipart/form-data">
+            @csrf
+
+            <input type="number" value="1" min="1" class="form-control" style="width: 100px" name="quantity">
+            <br>
+                <input type="submit" value=" Add To Cart" class="btn btn-success btn-xs">
+
+
+
+    </form>
              </div>
            </div>
+        </div>
+    </div>
            <div class="row g-2">
             <div class="col">
               <div class="p-3 border bg-light">
@@ -48,12 +57,11 @@
                         </tr>
                     </tbody>
                   </table>
-                 
+
               </div>
             </div>
            </div>
-        </div>
-    </div>
+
 
 @endforeach
 @endif

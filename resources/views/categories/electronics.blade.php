@@ -1,7 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session()->has('message'))
+<div class="alert alert-success">
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>    
+
+    {{ session()->get('message') }}
+</div>
+    
+
+    
+@endif
 <div class="container products">
+  
 <div class="row">
 
         @foreach ( $products as $product  )
@@ -11,34 +24,32 @@
                 <div class="img-wrapper">
                     <a href="{{ route('products.show', $product->products_id) }}" class="custom-card">
                         <img src="{{ asset('/sales/'.$product->products_image) }}" class="card-img-top img-fluid" alt="..." height="200px" width="200px">
+                        {{-- <img class="hover-img" src="{{ asset('/sales/'.$product->products_image) }}" alt="#"> --}}
                     </a>
                 </div>
+
         <div class="card-body">
             <h3>
                 <span class="text-primary">{{ $product->products_name }}</span>
                </h3>
 
-                    <h5 class="lead">Kshs {{ $product->products_price }} </h5>
-
-                    <p class="btn-holder"><a href="{{ url('add-to-cart/' .$product->products_id) }}" class="btn btn-warning btn-block text-center" role="button">  <i class="bi bi-cart4"></i> Add to cart</a> </p>
-
-            {{-- <div class="product-actions" style="display: flex; align-items: center; justify-content: center"> --}}
-
-                        {{-- <a href="{{ route('cart.edit', $product->products_id) }}" > --}}
-                            {{-- <button  type="button" class="add-to-cart-btn btn btn-warning btn-block float-start text-center">
-                                <i class="bi bi-cart4"></i> Add to Cart
-                            </button> --}}
-                            {{-- </a> --}}
+                    <h3 class="lead">Kshs {{ $product->products_price }} </h3>
 
 
-{{--
-                    <div class="progress" style="width: 25%">
-                    <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">{{ $product->products_quantity }}</div>
-                  </div> --}}
-            {{-- </div> --}}
+
+                    <form action="{{ route('addcart', $product->products_id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <input type="number" value="1" min="1" class="form-control" style="width: 100px" name="quantity">
+                        <br>
+                            <input type="submit" value=" Add To Cart" class="btn btn-success btn-xs">
+
+
+
+                </form>
+                {{-- <p class="btn-holder"><a href="{{ url('/addTocart') }}" class="btn btn-warning btn-block text-center" role="button">  Add to cart</a> </p> --}}
         </div>
-
-    </div>
+        </div>
 </div>
     @endforeach
 

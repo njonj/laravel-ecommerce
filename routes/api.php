@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // mpesa controller
 Route::post('v1/access/token', 'App\Http\Controllers\API\MpesaController@generateAccessToken');
-Route::post('v1/cart/stk/push', 'App\Http\Controllers\API\MpesaController@STKpush');
+Route::post('v1/cart/stk/push', 'App\Http\Controllers\API\MpesaController@STKpush')->name('stkpush');

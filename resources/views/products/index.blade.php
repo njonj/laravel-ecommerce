@@ -67,7 +67,7 @@
       </div>
     </div>
     </div>
-    </div>
+
     <hr>
     <main class="page-wrapper bg-dark">
         <h1>Products</h1>
@@ -88,35 +88,37 @@
 
     {{-- <div class="row row-cols-1 row-cols-md-2 g-4"> --}}
       <div class="col-md-2">
-        <div class="card" >
-            <img src="{{  asset('/storage/images/port1.jpg') }}" class="card-img-top" alt="...">
+        <div class="card" style="width: 8.9rem;" >
+            <img src="{{  asset('/storage/images/Huawei-Nova-9-min.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Port 1</h5>
-              <p class="card-text">Kshs 500</p>
+              <h5 class="card-title">Huawei Nova 9</h5>
+              <p class="card-text">Kshs 113,000</p>
+              <a href="/subcategories/huawei" class="btn btn-primary">Huawei</a>
             </div>
           </div>
-
-
-      </div>
-      <div class="col-md-2">
-        <div class="card" >
-          <img src="{{ asset('storage/images/port2.jpg') }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Port 2</h5>
-            <p class="card-text">Kshs 1000</p>
-          </div>
-        </div>
       </div>
 
       <div class="col-md-2">
-        <div class="card" >
-          <img src="{{ asset('storage/images/port3.jpg') }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Port 3</h5>
-            <p class="card-text">Kshs 200</p>
+        <div class="card" style="width: 8.9rem;" >
+            <img src="{{  asset('/storage/images/Samsung-Galaxy-S21-5G-c-min.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Samsung Galaxy S21</h5>
+              <p class="card-text">Kshs 113,000</p>
+              <a href="/subcategories/samsung" class="btn btn-primary">Samsung</a>
+            </div>
           </div>
-        </div>
       </div>
+
+      <div class="col-md-2">
+        <div class="card" style="width: 8.9rem;" >
+            <img src="{{  asset('/storage/images/XiaomiRedmi10C-min.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Xiaomi Redmi 10C</h5>
+              <p class="card-text">Kshs 25,000</p>
+              <a href="/subcategories/xiaomi" class="btn btn-primary">Xiaomi</a>
+            </div>
+          </div>
+      </div> 
     {{-- </div> --}}
       </div>
     </section>
@@ -217,7 +219,7 @@
     </div>
   </section>
     </main>
-
+</div>
 </div>
 <hr>
 @endsection

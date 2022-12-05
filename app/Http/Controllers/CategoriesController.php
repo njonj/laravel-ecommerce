@@ -13,6 +13,7 @@ class CategoriesController extends Controller
     {
         $products = DB::select('select * from products where categoriesId = :id ', ['id' => 1]);
 
+
         return view('categories.phones', ["products" => $products]);
     }
 

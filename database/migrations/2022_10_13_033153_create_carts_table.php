@@ -15,24 +15,32 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->integer('orderId');
-            $table->integer('quantity')->unsigned();
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('products_name')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('price')->nullable();
+
+
+
+
+            // $table->unsignedBigInteger('productsId');
+            // $table->unsignedBigInteger('orderId')->nullable();
+            $table->unsignedBigInteger('userId')->nullable();
+            // $table->float('price');
+            // $table->enum('status',['new','progress','delivered','cancel'])->default('new');
+            // $table->integer('quantity');
+            // $table->float('amount');
+            // $table->foreign('productsId')->references('products_id')->on('products')->onDelete('CASCADE');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('CASCADE');
+            // $table->foreign('orderId')->references('id')->on('orders')->onDelete('SET NULL');
             $table->timestamps();
+
+
+
         });
 
 
-        // Schema::table('carts', function (Blueprint $table) {
-        //     $table->unsignedBigInteger('orderId');
-        //     $table->foreign('orderId')->references('id')->on('orders')->onDelete('cascade');
-        // });
-        Schema::table('carts', function (Blueprint $table) {
-            $table->unsignedBigInteger('userId');
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
-        });
-        Schema::table('carts', function (Blueprint $table) {
-            $table->unsignedBigInteger('productsId');
-            $table->foreign('productsId')->references('products_id')->on('products')->onDelete('cascade');
-        });
     }
 
     /**

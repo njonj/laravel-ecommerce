@@ -2,72 +2,94 @@
 
 namespace App\Http\Controllers;
 
+// use Gloudemans\Shoppingcart\Facades\Cart;
+
 use App\Models\Cart;
+use App\Models\Orders;
 use App\Models\Products;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-use Illuminate\Http\Request;
-
 class CartController extends Controller
 {
-    public function __construct()
+    public function addcart(Request $request, $products_id)
     {
-        $this->middleware('auth');
-    }
+
+        if (Auth::id()) {
+            $user = auth()->user();
+            $products = Products::findOrFail($products_id);
+            $cart = new Cart;
+            $cart->userId = $user->id;
+            $cart->name = $user->name;
+            $cart->phone = $user->phone_no;
+            $cart->products_name = $products->products_name;
+            $cart->price = $products->products_price;
+            $cart->quantity = $request->quantity;
+            $cart->save();
 
 
-    public function addToCart()
-    {
-        $r = request();
-        $product = Products::where('products_id')->first();
-        // return $product;
-        if (empty($product)) {
-            Session::flash('error', 'Invalid Product');
-            return back();
+
+            return redirect()->back()->with('message', 'Product Added Successfully');
+        } else {
+            return redirect('login');
         }
-
-
-        // $products = DB::select('select products_id from products');
-        // return $products;
-        $user = DB::select('select id from users');
-
-
-        // return ["userId" =>$userId, "user"=>$user];
-
-        $carts = new Cart;
-        $carts->quantity = $r->quantity;
-        $carts->orderId = '';
-        $carts->productsId = $product->products_id;
-        $carts->userId = auth()->user()->id;
-        return $carts;
-        $carts->save();
-
-
-        Session::flash('success', "Product add Successful!");
-        return redirect()->route('cart');
     }
 
-    public function cart()
+    public function showcart(Cart $userId)
     {
-        // $userId = Session::get('user')['id'];
-        // $products = DB::table('carts')
-        //     ->leftjoin('products', 'products_id', '=', 'carts.productsId')
-        //     ->where('carts.userId', '=', Auth::id())
-        //     ->select('products.*', 'carts.id as cart_id')
-        //     ->get();
 
-        // return view('cart', ['products' => $products]);
+        $user = auth()->user();
+        // dd($user);
+        // $cart = DB::select('select * from carts where userId = :userId'  . $userId);
+        $cart = DB::table('carts')->where('userId', $user->id)->get();
+        // dd($cart);
+        return view('carts.cart', ['cart' => $cart]);
+    }
 
-        $carts = DB::table('carts')
-            ->leftjoin('products', 'products_id', '=', 'carts.productsId')
-            ->select('carts.quantity as qty', 'carts.id as cid', 'products.*')
-            ->where('carts.orderId', '=', '') //'' haven't make payment
-            ->where('carts.userId', '=', Auth::id())
-            ->get();
-        //->paginate(3);
-        return view('cart')->with('carts', $carts);
+    public function deletecart($id)
+    {
+        $data = Cart::find($id);
+        $data->delete();
+        return redirect()->back()->with('message', 'Product Removed Successfully');
+    }
+
+    public function confirmorder(Request $request)
+    {
+        $user = auth()->user();
+        $name = $user->name;
+        $phone = $user->phone;
+        $userId = $user->id;
+
+
+        foreach ($request->productname as $key => $productname) {
+            # code...
+            $order = new Orders;
+            $order->products_name = $request->productname[$key];
+            $order->price = $request->price[$key];
+            $order->quantity = $request->quantity[$key];
+            $order->name = $name;
+            $order->phone = $phone;
+            $order->userId = $userId;
+            $order->status = 'not delivered';
+            $order->save();
+        }
+        DB::table('carts')->where('userId', $userId)->delete();
+        return redirect()->route('checkout')->with('message', 'Product Ordered Successfully');
+    }
+
+    public function getOrder()
+    {
+        $user = auth()->user();
+        // dd($user);
+
+        $orders = DB::table('orders')->where('userId', $user->id)->get(['products_name', 'quantity', 'price']);
+        //  dd($orders);
+        return view('carts.order', ['orders' => $orders]);
+    }
+    public function checkout(){
+        return view('carts.checkout');
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProductsController;
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
+
+
 
 /*---------------Admin Route------------*/
 
@@ -50,7 +53,7 @@ Route::prefix('seller')->group(function () {
 /*--------------- End of Seller Route------------*/
 
 //products
-Route::resource('products', ProductsController::class);
+Route::resource('products', 'App\Http\Controllers\ProductsController');
 Route::get('/products/create', 'App\Http\Controllers\ProductsController@create')->name('products.create')->middleware('seller');
 
 Route::get('/categories/phones', 'App\Http\Controllers\CategoriesController@phones');
@@ -59,21 +62,35 @@ Route::get('/categories/electronics', 'App\Http\Controllers\CategoriesController
 
 
 // subcategories
-Route::get('/subcategories/huawei', 'App\Http\Controllers\SubCategoriesController@huawei');
-Route::get('/subcategories/nokia', 'App\Http\Controllers\SubCategoriesController@nokia');
-Route::get('/subcategories/samsung', 'App\Http\Controllers\SubCategoriesController@samsung');
-Route::get('/subcategories/oppo', 'App\Http\Controllers\SubCategoriesController@oppo');
-Route::get('/subcategories/xiaomi', 'App\Http\Controllers\SubCategoriesController@xiaomi');
+Route::prefix('/categories/phones')->group(function(){
+Route::get('/subcategories/huawei', 'App\Http\Controllers\SubController@huawei');
+Route::get('/subcategories/nokia', 'App\Http\Controllers\SubController@nokia');
+Route::get('/subcategories/samsung', 'App\Http\Controllers\SubController@samsung');
+Route::get('/subcategories/oppo', 'App\Http\Controllers\SubController@oppo');
+Route::get('/subcategories/xiaomi', 'App\Http\Controllers\SubController@xiaomi');
+});
 
 
 
 // cart
 
-Route::post('add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('add-to-cart')->middleware('auth');
-Route::get('cart', 'App\Http\Controllers\CartController@cart')->name('cart')->middleware('auth');
-Route::get('add-to-cart', 'App\Http\Controllers\CartController@addToCart')->middleware('auth');
-Route::patch('update-cart', 'App\Http\Controllers\ProductsController@upgrade')->middleware('auth');
-Route::delete('remove-from-cart', 'App\Http\Controllers\ProductsController@remove')->middleware('auth');
+Route::post('/addcart/{products_id}', 'App\Http\Controllers\CartController@addcart')->name('addcart');
+Route::get('/carts/cart', 'App\Http\Controllers\CartController@showcart')->name('showcart');
+Route::delete('delete/{id}', 'App\Http\Controllers\CartController@deletecart')->name('delete');
 
 
-Route::post('/create/order', 'App\Http\Controllers\OrderController@add');
+
+// Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+// Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+// Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+// Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+// Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+
+
+
+Route::post('/order', 'App\Http\Controllers\CartController@confirmorder')->name('order');
+Route::get('/carts/order', 'App\Http\Controllers\CartController@getOrder')->name('checkout');
+Route::get('/carts/checkout', 'App\Http\Controllers\CartController@checkout')->name('cartcheck');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -19,11 +19,12 @@ return new class extends Migration
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('orders_total');
-            $table->date('orders_date');
-
-            $table->date('shipping_date');
-            $table->boolean('is_delivered');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('products_name')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('price')->nullable();
+            $table->string('status')->nullable();
 
             $table->timestamps();
         });
