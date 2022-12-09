@@ -68,6 +68,15 @@ Route::get('/subcategories/nokia', 'App\Http\Controllers\SubController@nokia');
 Route::get('/subcategories/samsung', 'App\Http\Controllers\SubController@samsung');
 Route::get('/subcategories/oppo', 'App\Http\Controllers\SubController@oppo');
 Route::get('/subcategories/xiaomi', 'App\Http\Controllers\SubController@xiaomi');
+Route::get('/subcategories/hp', 'App\Http\Controllers\SubController@hp');
+Route::get('/subcategories/dell', 'App\Http\Controllers\SubController@dell');
+Route::get('/subcategories/lenovo', 'App\Http\Controllers\SubController@lenovo');
+Route::get('/subcategories/toshiba', 'App\Http\Controllers\SubController@toshiba');
+Route::get('/subcategories/accessories', 'App\Http\Controllers\SubController@accessories');
+Route::get('/subcategories/tv', 'App\Http\Controllers\SubController@tv');
+
+
+
 });
 
 
@@ -75,7 +84,7 @@ Route::get('/subcategories/xiaomi', 'App\Http\Controllers\SubController@xiaomi')
 // cart
 
 Route::post('/addcart/{products_id}', 'App\Http\Controllers\CartController@addcart')->name('addcart');
-Route::get('/carts/cart', 'App\Http\Controllers\CartController@showcart')->name('showcart');
+Route::get('/carts/cart', 'App\Http\Controllers\CartController@showcart')->name('showcart')->middleware('auth');
 Route::delete('delete/{id}', 'App\Http\Controllers\CartController@deletecart')->name('delete');
 
 

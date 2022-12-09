@@ -37,4 +37,34 @@ class SubController extends Controller
 
         return view('subcategories.oppo', ["products" => $products]);
     }
+    public function hp(){
+        $products = DB::select('select * from products where subCategoriesId = :id', ['id' => 6]);
+
+        return view('subcategories.hp', ["products" => $products]);
+    }
+    public function dell(){
+        $products = DB::select('select * from products where subCategoriesId = :id', ['id' => 8]);
+
+        return view('subcategories.dell', ["products" => $products]);
+    }
+    public function toshiba(){
+        $products = DB::select('select * from products where subCategoriesId = :id', ['id' => 7]);
+
+        return view('subcategories.toshiba', ["products" => $products]);
+    }
+    public function lenovo(){
+        $products = DB::select('select * from products where subCategoriesId = :id', ['id' => 9]);
+
+        return view('subcategories.lenovo', ["products" => $products]);
+    }
+    public function accessories(){
+        $products = DB::select('select * from products where subCategoriesId = :id', ['id' => 10]);
+
+        return view('subcategories.accessories', ["products" => $products]);
+    }
+    public function tv(){
+        $products = DB::select('select * from products where subCategoriesId = :id', ['id' => 11]);
+
+        return view('subcategories.tv', ["products" => $products]);
+    }
 }

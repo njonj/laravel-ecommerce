@@ -87,6 +87,17 @@
         .gutter-1{
             margin: -5px;
         }
+        .overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
 </style>
 </head>
 <body>
@@ -152,6 +163,10 @@
 
                                 </div>
                             </li>
+     <li>
+     <a target="_blank" rel="noopener" href="https://webchat.botframework.com/embed/VeerBot?s=wBMXQ2fCelU.BHu0w8r5mGhRooQDrXuIRy-2V0_Of4VjAjX2gx0bARI" class="btn btn-outline-success"><i class="bi bi-chat-left-dots-fill"></i> Chat with Esales</a>
+
+                            </li>
                         @endguest
 
                     </ul>
@@ -163,11 +178,25 @@
 
                 @yield('content')
 
-
+<hr>
 
 <br>
             @include('layouts.footer')
         </main>
+      
     </div>
 </body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#button').click(function(){ 
+        if(!$('#iframe').length) {
+                $('#iframeHolder').html('<iframe id="iframe" src="https://webchat.botframework.com/embed/VeerBot?s=wBMXQ2fCelU.BHu0w8r5mGhRooQDrXuIRy-2V0_Of4VjAjX2gx0bARI"></iframe>');
+        }
+    });   
+});
+</script>
+ 
+
+</script>
 </html>

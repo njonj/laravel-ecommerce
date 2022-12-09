@@ -81,7 +81,7 @@
                     <div>
                       <h3 class="mb-1">Phones and Tablets</h3><a class="fs-md" href="/categories/phones">Shop for Phones and Tablets<i class="bi bi-caret-right fs-xs align-middle ms-1"></i></a>
                     </div>
-                  </div><a class="d-none d-md-block mt-auto" href="/categories/phones"><img class="d-block w-100" src="{{ asset('/storage/images/product.jpg') }}" alt="Cars"></a>
+                  </div><a class="d-none d-md-block mt-auto" href="/categories/phones"><img class="d-block w-100" src="{{ asset('/storage/images/product.jpg') }}" alt=""></a>
                 </div>
         </div>
 
@@ -93,7 +93,7 @@
             <div class="card-body">
               <h5 class="card-title">Huawei Nova 9</h5>
               <p class="card-text">Kshs 113,000</p>
-              <a href="/subcategories/huawei" class="btn btn-primary">Huawei</a>
+              <a href="/categories/phones/subcategories/huawei" class="btn btn-primary">Huawei</a>
             </div>
           </div>
       </div>
@@ -137,7 +137,7 @@
               </div>
               <div class="col-md-2">
                 <div class="card">
-                    <img src="{{  asset('/storage/images/port1.jpg') }}" class="card-img-top" alt="...">
+                    <img src="{{  asset('/storage/images/Dell.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Port 1</h5>
                       <p class="card-text">Kshs 500</p>
@@ -148,7 +148,7 @@
               </div>
               <div class="col-md-2">
                 <div class="card">
-                  <img src="{{ asset('storage/images/port2.jpg') }}" class="card-img-top" alt="...">
+                  <img src="{{ asset('storage/images/23-min.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Port 2</h5>
                     <p class="card-text">Kshs 1000</p>
@@ -158,7 +158,7 @@
 
               <div class="col-md-2">
                 <div class="card">
-                  <img src="{{ asset('storage/images/port3.jpg') }}" class="card-img-top" alt="...">
+                  <img src="{{ asset('storage/images/Dell-XPS.jpg') }}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Port 3</h5>
                     <p class="card-text">Kshs 200</p>
@@ -187,7 +187,7 @@
   {{-- <div class="row row-cols-1 row-cols-md-2 g-4"> --}}
     <div class="col-md-2 ">
         <div class="card">
-            <img src="{{  asset('/storage/images/port1.jpg') }}" class="card-img-top" alt="...">
+            <img src="{{  asset('/storage/images/Samsung.jpg') }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Port 1</h5>
               <p class="card-text">Kshs 500</p>
@@ -198,7 +198,7 @@
       </div>
       <div class="col-md-2 ">
         <div class="card">
-          <img src="{{ asset('storage/images/port2.jpg') }}" class="card-img-top" alt="...">
+          <img src="{{ asset('storage/images/sony.jpg') }}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Port 2</h5>
             <p class="card-text">Kshs 1000</p>
@@ -208,7 +208,7 @@
 
       <div class="col-md-2">
         <div class="card">
-          <img src="{{ asset('storage/images/port3.jpg') }}" class="card-img-top" alt="...">
+          <img src="{{ asset('storage/images/Sony Tv-min.jpg') }}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Port 3</h5>
             <p class="card-text">Kshs 200</p>
@@ -216,7 +216,8 @@
         </div>
       </div>
   {{-- </div> --}}
-    </div>
+
+  </div>
   </section>
     </main>
 </div>
